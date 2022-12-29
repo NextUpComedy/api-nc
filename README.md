@@ -1,2 +1,1 @@
-# api-nc
- API for NextUp Comedy 
+# Nextup Comedy
