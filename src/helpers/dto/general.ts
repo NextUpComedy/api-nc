@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { IDashboardSettings, IPayout } from 'db-models-nc';
+import { IDashboardSettings, IPayout } from 'nc-db-new';
 import Big from 'big.js';
 import { IEditDashboardSettings } from '../../interfaces/DtoAdmin';
 import { IPagination } from '../../interfaces/DtoContents';
@@ -53,28 +53,26 @@ export const toAppSettingsDTO = (
   settings: IDashboardSettings,
 ): IEditDashboardSettings => ({
   calculatorEndpoint: settings.calculatorEndpoint,
-  viewliftEmail: settings.email,
   expiredAfterInYears: settings.expiredAfterInYears.toString(),
-  viewliftWatchesFetchLimit: settings.limit.toString(),
+  uScreenWatchesFetchLimit: settings.limit.toString(),
   fetchMaxCount: settings.maxCount.toString(),
+  uscreenApiKey: settings.uscreenApiKey,
   nextupToOwedSplitPercentage: settings.nextUpToOwedSplitPercentage,
-  viewliftPassword: settings.password,
   stripeKey: settings.stripeKey,
   systemActivationDate: settings.systemActivationDate,
-  viewliftEndpoint: settings.viewliftEndpoint,
+  uScreenEndpoint: settings.uScreenEndpoint,
 });
 
 export const toDbSettingsDTO = (
   settings: IEditDashboardSettings,
 ): IDashboardSettings => ({
   calculatorEndpoint: settings.calculatorEndpoint,
-  email: settings.viewliftEmail,
   expiredAfterInYears: Number(settings.expiredAfterInYears),
-  limit: Number(settings.viewliftWatchesFetchLimit),
+  limit: Number(settings.uScreenWatchesFetchLimit),
   maxCount: Number(settings.fetchMaxCount),
   nextUpToOwedSplitPercentage: settings.nextupToOwedSplitPercentage,
-  password: settings.viewliftPassword,
   stripeKey: settings.stripeKey,
+  uscreenApiKey: settings.uscreenApiKey,
   systemActivationDate: settings.systemActivationDate,
-  viewliftEndpoint: settings.viewliftEndpoint,
+  uScreenEndpoint: settings.uScreenEndpoint,
 });

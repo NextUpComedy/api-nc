@@ -1,14 +1,13 @@
-import { IUser } from 'db-models-nc';
+import { IUser } from 'nc-db-new';
 
 export interface IEditDashboardSettings {
   nextupToOwedSplitPercentage: string
   fetchMaxCount: string
   expiredAfterInYears: string
-  viewliftWatchesFetchLimit: string
-  viewliftPassword: string;
+  uScreenWatchesFetchLimit: string
   stripeKey: string;
-  viewliftEndpoint: string;
-  viewliftEmail: string;
+  uscreenApiKey: string;
+  uScreenEndpoint: string;
   systemActivationDate: string;
   calculatorEndpoint: string;
 }

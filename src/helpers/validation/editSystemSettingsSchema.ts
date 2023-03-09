@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import {
-  date, positiveNumber, email, limit, stringValidation, percentageNumber, uri,
+  date, positiveNumber, limit, stringValidation, percentageNumber, uri,
 } from '../validationRules';
 
 export default Joi.object({
@@ -8,10 +8,9 @@ export default Joi.object({
   systemActivationDate: date.required(),
   fetchMaxCount: positiveNumber,
   expiredAfterInYears: positiveNumber,
-  viewliftEmail: email,
-  viewliftEndpoint: uri,
-  viewliftWatchesFetchLimit: limit.required(),
-  viewliftPassword: stringValidation.required(),
+  uScreenEndpoint: uri,
+  uscreenApiKey: stringValidation.required(),
+  uScreenWatchesFetchLimit: limit.required(),
   stripeKey: stringValidation.required(),
   calculatorEndpoint: uri,
 });

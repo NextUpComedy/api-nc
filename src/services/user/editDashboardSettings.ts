@@ -1,5 +1,5 @@
 import { AES } from 'crypto-js';
-import { Settings, ISettings, IVariables } from 'db-models-nc';
+import { Settings, ISettings, IVariables } from 'nc-db-new';
 import config from '../../config';
 
 const { ENCRYPTION_SECRET_KEY } = config.server;
@@ -11,8 +11,8 @@ const editDashboardSettings: IEditDashboardSettings = async ({
   regularVariables,
 }) => {
   const oldVars = (await Settings.findOne({ where: { name: 'variables' } })) as ISettings;
-  const hashedPassword = AES
-    .encrypt(encryptedVariables.viewliftPassword, ENCRYPTION_SECRET_KEY)
+  const hashedAPIKey = AES
+    .encrypt(encryptedVariables.uscreenApiKey, ENCRYPTION_SECRET_KEY)
     .toString();
 
   const hashedStripeKey = AES
@@ -22,7 +22,7 @@ const editDashboardSettings: IEditDashboardSettings = async ({
   oldVars.value = {
     regularVariables,
     encryptedVariables: {
-      viewliftPassword: hashedPassword,
+      uscreenApiKey: hashedAPIKey,
       stripeKey: hashedStripeKey,
     },
   };

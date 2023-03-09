@@ -4,7 +4,7 @@ import { constants, dto } from '../../helpers';
 
 export default async (request: Request, response: Response, next: NextFunction): Promise<void> => {
   const {
-    viewliftPassword,
+    uscreenApiKey,
     stripeKey,
     ...regularVariables
   } = dto.adminDTO.editDashboardSettingsDTO(request);
@@ -17,13 +17,13 @@ export default async (request: Request, response: Response, next: NextFunction):
       encryptedVariables,
     } = await editDashboardSettings({
       encryptedVariables: {
-        viewliftPassword,
+        uscreenApiKey,
         stripeKey,
       },
       regularVariables,
     });
     request.app.set('settings', {
-      viewliftPassword,
+      uscreenApiKey,
       stripeKey,
       ...regularVariables,
     });
