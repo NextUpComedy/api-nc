@@ -4,7 +4,7 @@ import {
 import {
   getDashboardSettings,
   Report,
-} from 'db-models-nc';
+} from 'nc-db-new';
 import { NextFunction, Response } from 'express';
 import axios from 'axios';
 import { IEditDashboardSettings } from '../../interfaces/DtoAdmin';

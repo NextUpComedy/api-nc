@@ -1,4 +1,4 @@
-import { IUser, IContent } from 'db-models-nc';
+import { IUser, IContent } from 'nc-db-new';
 import {
   Secret,
 } from 'jsonwebtoken';

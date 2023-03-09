@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { getDashboardSettings, sequelize } from 'db-models-nc';
+import { getDashboardSettings, sequelize } from 'nc-db-new';
 import { dto } from '../helpers';
 import { IServerAddress } from '../interfaces';
 import Logger from '../helpers/logger';

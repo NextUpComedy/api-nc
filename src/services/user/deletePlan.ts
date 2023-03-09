@@ -1,4 +1,4 @@
-import { Settings, ISettings } from 'db-models-nc';
+import { Settings, ISettings } from 'nc-db-new';
 
 type IDeletePlan = (planId: string) => Promise<{ [key: string]: number }>;
 

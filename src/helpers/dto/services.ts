@@ -1,4 +1,4 @@
-import { IContent, IPayout, IUser } from 'db-models-nc';
+import { IContent, IPayout, IUser } from 'nc-db-new';
 import {
   IGetPaginatedPayouts, IPayoutRequest, IUpdatePayoutRequestStatus, IUpdateUserPaidRevenue, IUserId,
 } from '../../interfaces/DtoUsers';

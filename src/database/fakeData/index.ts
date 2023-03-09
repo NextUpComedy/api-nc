@@ -1,4 +1,4 @@
-import { sequelize } from 'db-models-nc';
+import { sequelize } from 'nc-db-new';
 import logger from '../../helpers/logger';
 
 const { NODE_ENV } = process.env;
