@@ -4,7 +4,7 @@ import {
   User,
   Payout,
   Report,
-} from 'db-models-nc';
+} from 'nc-db-new';
 import { userStatus, getStatisticsInitialValues } from '../../helpers/constants';
 import { IStatistics } from '../../interfaces';
 

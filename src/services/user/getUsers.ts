@@ -1,4 +1,4 @@
-import { User } from 'db-models-nc';
+import { User } from 'nc-db-new';
 import { userRoles } from '../../helpers/constants';
 import { IGetPaginatedUsersDTO } from '../../helpers/dto/services';
 

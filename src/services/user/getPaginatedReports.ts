@@ -1,4 +1,4 @@
-import { Report } from 'db-models-nc';
+import { Report } from 'nc-db-new';
 
 type IGetPaginatedReports = ({ page, limit }: { page: number, limit: number }) => Promise<any>;
 

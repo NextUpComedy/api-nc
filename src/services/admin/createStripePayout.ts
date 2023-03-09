@@ -1,5 +1,5 @@
 import Big from 'big.js';
-import { getDashboardSettings } from 'db-models-nc';
+import { getDashboardSettings } from 'nc-db-new';
 import Stripe from 'stripe';
 
 export default (async ({

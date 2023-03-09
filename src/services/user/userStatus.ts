@@ -1,5 +1,5 @@
 import { Op, col } from 'sequelize';
-import { User, UserRole } from 'db-models-nc';
+import { User, UserRole } from 'nc-db-new';
 import { constants } from '../../helpers';
 import { GetUsersStatusDTO } from '../../helpers/dto/services';
 

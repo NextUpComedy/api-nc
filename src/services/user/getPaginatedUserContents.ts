@@ -1,4 +1,4 @@
-import { Content, IContent } from 'db-models-nc';
+import { Content, IContent } from 'nc-db-new';
 
 type IGetPaginatedUserContents = (
   { userId, page, limit }: {userId: number, page: number, limit: number}

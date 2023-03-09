@@ -1,4 +1,4 @@
-import { Payout } from 'db-models-nc';
+import { Payout } from 'nc-db-new';
 import { IAskForPayoutDTO } from '../../helpers/dto/services';
 
 const askForPayout:IAskForPayoutDTO = async ({

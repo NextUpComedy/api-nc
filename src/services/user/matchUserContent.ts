@@ -1,6 +1,6 @@
 import {
   Content, IContent, ContentReport, Report, User,
-} from 'db-models-nc';
+} from 'nc-db-new';
 import {
   min, max, differenceInDays, addYears,
 } from 'date-fns';
