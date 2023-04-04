@@ -66,12 +66,10 @@ const matchUserContent: IMatchUserContent = async ({
       contentId,
       reportId,
       watchedSeconds,
+      prevWatchedSeconds,
       revenue,
       createdBy,
       updatedBy,
-      tvodTicketsCount,
-      tvodSeconds,
-      watches,
       report,
     }) => {
       if (!report) throw errorMessages.BAD_REQUEST_ERROR;
@@ -125,12 +123,10 @@ const matchUserContent: IMatchUserContent = async ({
         contentId,
         reportId,
         watchedSeconds,
+        prevWatchedSeconds,
         revenue,
         createdBy,
         updatedBy,
-        tvodTicketsCount,
-        tvodSeconds,
-        watches,
         nextupRevenue: nextupRevenue.toString(),
         owedRevenue: owedRevenue.toString(),
         beforeExpiryReportDaysPercentage:
