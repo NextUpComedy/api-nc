@@ -2,7 +2,7 @@ export interface IPagination {
   limit: number,
   page: number,
   title?: string | undefined,
-  id?: string | undefined,
+  id?: number | undefined,
 }
 
 export interface IMatchUserContent {

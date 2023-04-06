@@ -4,7 +4,7 @@ import {
 } from '../validationRules';
 
 export default Joi.object({
-  id: guid.required(),
+  id: positiveNumber.required(),
   userId: idValidation,
   filmingCosts: positiveNumber,
   launchDate: date.required(),

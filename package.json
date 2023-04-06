@@ -51,7 +51,7 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "nc-db-new": "^1.2.31",
+    "nc-db-new": "^1.2.44",
     "nodemailer": "^6.7.5",
     "pg": "^8.7.3",
     "sequelize": "^6.21.1",
