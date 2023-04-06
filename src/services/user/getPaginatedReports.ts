@@ -8,7 +8,7 @@ const getPaginatedReports: IGetPaginatedReports = async ({ page, limit }) => {
   const reports = await Report.findAndCountAll({
     offset,
     limit,
-    attributes: ['watchTimeFrom', 'watchTimeTo', 'overallWatchedSeconds', 'totalRevenue'],
+    attributes: ['watchTimeFrom', 'watchTimeTo', 'overallWatchedSeconds', 'prevOverallWatchedSeconds', 'totalRevenue'],
     order: [['createdAt', 'DESC']],
   });
 

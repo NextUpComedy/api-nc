@@ -130,8 +130,9 @@ interface IReports {
   rows: {
     watchTimeFrom: string;
     watchTimeTo: string;
-    overallWatchedSeconds: string;
-    totalRevenue: string;
+    overallWatchedSeconds: number;
+    prevOverallWatchedSeconds: number;
+    totalRevenue: number;
   }
 }
 
