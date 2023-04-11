@@ -4,7 +4,6 @@ import { getUnmatchedContent } from '../../services';
 
 export default async (request: Request, response: Response, next: NextFunction): Promise<void> => {
   const paginationData = dto.generalDTO.paginationDTO(request);
-  console.log(paginationData);
 
   try {
     const data = await getUnmatchedContent(paginationData);
