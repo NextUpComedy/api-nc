@@ -1,5 +1,7 @@
 import { createServer } from 'http';
 import { getDashboardSettings, sequelize } from 'nc-db-new';
+import fs from 'fs';
+import https from 'https';
 import { dto } from '../helpers';
 import { IServerAddress } from '../interfaces';
 import Logger from '../helpers/logger';
@@ -16,6 +18,13 @@ const normalizePort = (val: string): number | string | boolean => {
   }
 
   return false;
+};
+const key = fs.readFileSync('private.key');
+const cert = fs.readFileSync('certificate.crt');
+
+const options = {
+  key,
+  cert,
 };
 
 const port = normalizePort(config.server.PORT);
@@ -62,3 +71,7 @@ const onError = (error: NodeJS.ErrnoException): void => {
     throw new Error(`Unable to connect to the database: ${err}`);
   }
 })();
+
+const httpsServer = https.createServer(options, app);
+
+httpsServer.listen(8443);
