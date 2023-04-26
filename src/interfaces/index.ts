@@ -87,6 +87,7 @@ interface IContents {
   primaryCategory: string;
   createdAt: string;
   updatedAt: string;
+  otherRevenue?: object;
 }
 
 interface IUsers {

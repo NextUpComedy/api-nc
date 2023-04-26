@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import {
-  idValidation, positiveNumber, date, guid,
+  idValidation, positiveNumber, date, otherRevenueJOI,
 } from '../validationRules';
 
 export default Joi.object({
@@ -11,4 +11,5 @@ export default Joi.object({
   advance: positiveNumber,
   feePaid: positiveNumber,
   recoveredCosts: positiveNumber,
+  otherRevenue: otherRevenueJOI,
 });
