@@ -14,3 +14,9 @@ export interface IMatchUserContent {
   feePaid: string
   recoveredCosts: string
 }
+
+export interface IChangeContentOwner {
+  id: string,
+  oldUserId: number,
+  newUserId: number,
+}

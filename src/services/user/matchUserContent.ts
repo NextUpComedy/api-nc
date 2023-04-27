@@ -70,7 +70,6 @@ const matchUserContent: IMatchUserContent = async ({
       servicesRevenue += item.revenue;
     });
   }
-  console.log('servicesRevenue', servicesRevenue);
   const cReports = content?.contentReports?.map(
     ({
       id,

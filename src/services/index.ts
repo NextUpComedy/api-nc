@@ -19,6 +19,7 @@ export {
   putPlans,
   getPlans,
   deletePlan,
+  changeContentOwner,
 } from './user';
 
 export {
