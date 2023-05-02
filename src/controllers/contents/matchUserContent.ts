@@ -29,7 +29,7 @@ export default async (request: Request, response: Response, next: NextFunction):
       userId,
       nextUpToOwedSplitPercentage,
       expiredAfterInYears,
-      otherRevenue: JSON.parse(request.body.otherRevenue),
+      otherRevenue: request.body.otherRevenue,
     });
 
     response
