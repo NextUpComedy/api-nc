@@ -32,6 +32,7 @@ export {
   rejectUser,
   blockUser,
   editDashboardSettings,
+  editContentData,
   getDashboardSettings,
   getPaginatedUsers,
   approvePayout,

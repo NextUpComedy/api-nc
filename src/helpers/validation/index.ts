@@ -21,3 +21,4 @@ export { default as planIdSchema } from './planIdSchema';
 export { default as setStripeAccountSchema } from './setStripeAccountSchema';
 export { default as setReportSchema } from './setReportSchema';
 export { default as changeOwnerSchema } from './changeOwnerSchema';
+export { default as editContentDataSchema } from './editContentDataSchema';

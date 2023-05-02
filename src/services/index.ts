@@ -32,4 +32,5 @@ export {
   getPayoutRequestById,
   updatePayoutStatus,
   updateUserPaidRevenue,
+  editContentData,
 } from './admin';
