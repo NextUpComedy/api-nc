@@ -48,6 +48,7 @@ export {
 
 export {
   getUnMatchContent,
+  getMatchedContents,
   matchUserContent,
   changeContentOwner,
 } from './contents';

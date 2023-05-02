@@ -32,7 +32,7 @@ export const date = Joi.string().isoDate();
 
 export const guid = Joi.string().guid();
 
-export const otherRevenueJOI = Joi.array().required();
+export const otherRevenueJOI = Joi.array();
 
 export const passwordRef = Joi.string().invalid(Joi.ref('oldPassword')).messages({ 'any.invalid': "New password shouldn't be the same as the old one" }).required();
 

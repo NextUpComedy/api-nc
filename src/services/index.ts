@@ -24,6 +24,7 @@ export {
 
 export {
   getUnmatchedContent,
+  getMatchedContent,
 } from './contents';
 
 export {
