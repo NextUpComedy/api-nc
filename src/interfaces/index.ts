@@ -16,6 +16,7 @@ interface IUserInfo{
   name: string;
   image?: string;
   role?: string;
+  preferredPayoutMethod?: string;
 }
 
 interface IServer{

@@ -31,6 +31,9 @@ export default (userTypes: number[]) => async (
     const { userRoleId, userStatusId } = userData;
 
     if (!userTypes.includes(userRoleId) || userStatusId !== userStatus.APPROVED) {
+      console.log(userTypes, userRoleId, userStatusId);
+      console.log(userStatus.APPROVED);
+
       throw errorMessages.UNAUTHORIZED_ERROR;
     }
 

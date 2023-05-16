@@ -51,3 +51,4 @@ export { default as tokenError } from './tokenError';
 export { signToken, verifyToken } from './jwt';
 export { default as upload } from './uploadImage';
 export { default as googleAuthentication } from './googleAuthentication';
+export { default as generateInvoice } from './invoiceGenerator';

@@ -20,6 +20,8 @@ export {
   cancelPayoutRequest,
   getSpecificUserStatistics,
   getUserContents,
+  choosePaymentMethod,
+  getCurentWatchedTime,
 } from './users';
 
 export {

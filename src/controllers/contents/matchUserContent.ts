@@ -7,7 +7,7 @@ import {
 
 export default async (request: Request, response: Response, next: NextFunction): Promise<void> => {
   const {
-    advance, feePaid, filmingCosts, id, launchDate, recoveredCosts, userId,
+    advance, feePaid, filmingCosts, id, launchDate, recoveredCosts, userId, notes,
   } = dto.contentDTO.matchUserContentDTO(request);
   const totalCost = +filmingCosts + +advance + +feePaid;
   const appSettings = request.app.get('settings') as IEditDashboardSettings;
@@ -30,6 +30,7 @@ export default async (request: Request, response: Response, next: NextFunction):
       nextUpToOwedSplitPercentage,
       expiredAfterInYears,
       otherRevenue: request.body.otherRevenue,
+      notes,
     });
 
     response

@@ -36,6 +36,8 @@ const getNumberOfContent: IGetContentReportDTO = ({ page, limit, userId }) => {
       'filmingCosts',
       'recoveredCosts',
       'primaryCategory',
+      'otherRevenue',
+      'notes',
     ],
 
   });
