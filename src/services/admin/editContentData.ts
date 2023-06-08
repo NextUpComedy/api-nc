@@ -43,7 +43,7 @@ const editContentData = async (payload: EditContentDataParams): Promise<any> => 
   }
   const newOtherRevenue = JSON.parse(JSON.stringify(otherRevenue));
   await content.save();
-  if (oldOtherRevenue === newOtherRevenue) {
+  if (oldOtherRevenue[0].revenue === newOtherRevenue[0].revenue) {
     await user.save();
   } else if (oldOtherRevenue !== newOtherRevenue) {
     let servicesRevenue = 0;
@@ -60,16 +60,21 @@ const editContentData = async (payload: EditContentDataParams): Promise<any> => 
       ? newOtherRevenue.reduce((accumulator:any, current:any) => accumulator
        + parseInt(current.revenue, 10), 0) : 0;
     let difference = 0;
+    const totalRevenue = Number(user?.totalRevenue);
+
     if (oldServicesRevenue > newServicesRevenue) {
       difference = oldServicesRevenue - newServicesRevenue;
-    } else {
+      user.totalRevenue = (totalRevenue - difference).toString();
+      content.owedAccRevenue = (Number(content.owedAccRevenue) - difference).toString();
+      await content.save();
+      await user.save();
+    } else if (newServicesRevenue > oldServicesRevenue) {
       difference = newServicesRevenue - oldServicesRevenue;
+      user.totalRevenue = (totalRevenue + difference).toString();
+      content.owedAccRevenue = (Number(content.owedAccRevenue) + difference).toString();
+      await content.save();
+      await user.save();
     }
-
-    let totalRevenue = Number(user?.totalRevenue);
-    totalRevenue += Number(servicesRevenue);
-    user.totalRevenue = (totalRevenue - difference).toString();
-    await user.save();
   }
 
   return content;

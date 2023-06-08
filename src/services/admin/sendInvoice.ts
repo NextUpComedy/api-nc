@@ -16,12 +16,13 @@ export default async function sendInvoice(userId: number): Promise<void> {
   }
   const content = await getNumberOfContent({
     page: 1,
-    limit: 10,
+    limit: 40,
     userId: Number(user?.id),
   });
   let msg: any = {};
-
-  if (content.rows.every((row) => JSON.stringify(row?.otherRevenue) === '{}')) {
+  let accmsg: any = {};
+  const sums:any = [];
+  if (content.rows.every((row) => JSON.stringify(row?.otherRevenue ?? {}) === '{}' || JSON.stringify(row?.otherRevenue ?? []) === '[]')) {
     const products = content.rows.map((item) => ({
       quantity: 1,
       description: item.title,
@@ -35,12 +36,28 @@ export default async function sendInvoice(userId: number): Promise<void> {
       stripeId: user?.stripeAccount,
       products,
     });
-    const recipients = [user?.email, process.env.ACCOUNTENT_EMAIL as string];
+    const recipients = [user?.email];
+
     msg = {
       to: recipients.filter((recipient) => recipient) as any,
       from: process.env.SENDGRID_ADMIN_EMAIL as string,
-      subject: 'Payment invoice',
-      text: 'and easy to do anywhere, even with Node.js',
+      subject: ' Copy of your NextUp Invoice',
+      templateId: process.env.SENDGRID_INVOICE_TEMPLATE_ID as string,
+      attachments: [
+        {
+          content: generateInvoiceResult.pdf.toString('base64'),
+          filename: 'invoice.pdf',
+          type: 'application/pdf',
+          disposition: 'attachment',
+        },
+      ],
+    };
+
+    accmsg = {
+      to: process.env.ACCOUNTENT_EMAIL as string,
+      from: process.env.SENDGRID_ADMIN_EMAIL as string,
+      subject: 'Invoice - Act Revenue Share and Deal Revenue',
+      templateId: process.env.SENDGRID_ACCT_INVOICE_TEMPLATE_ID as string,
       attachments: [
         {
           content: generateInvoiceResult.pdf.toString('base64'),
@@ -66,6 +83,7 @@ export default async function sendInvoice(userId: number): Promise<void> {
           0,
         );
         sum = servicesRevenue;
+        sums.push(sum); // Store the sum for the current content item
 
         return otherRevenueObj.map((row: any) => ({
           quantity: 1,
@@ -78,27 +96,40 @@ export default async function sendInvoice(userId: number): Promise<void> {
 
     const products = content.rows
       .filter((item) => Number(item.owedAccRevenue) !== Number(sum))
-      .map((item) => ({
+      .map((item, index) => ({
         quantity: 1,
         description: `${item.title} - Subscription Revenue Share`,
         tax: vatPercentage,
-        price: Number(item.owedAccRevenue) - Number(sum),
+        price: Number(item.owedAccRevenue) - Number(sums[index]),
       }));
 
     const generateInvoiceResult = await generateInvoice({
       holderName: `Account Name: ${user?.accountHolderName}`,
       accountNumber: `Account Number: ${user?.accountNumber}`,
       sortCode: `Account Sort Code: ${user?.sortCode}`,
-      stripeId: `Stripe Account Id: ${user?.stripeAccount}`,
+      stripeId: `Stripe Acount Id: ${user?.stripeAccount}`,
       products: products.concat(listOfOtherRevenueAsProducts.flat()),
     });
-    fs.writeFileSync('invoice.pdf', generateInvoiceResult.pdf, 'base64');
     const recipients = [user?.email, process.env.ACCOUNTENT_EMAIL as string];
     msg = {
       to: recipients.filter((recipient) => recipient) as any,
       from: process.env.SENDGRID_ADMIN_EMAIL as string,
-      subject: 'Payment invoice',
-      text: 'and easy to do anywhere, even with Node.js',
+      subject: ' Copy of your NextUp Invoice',
+      templateId: process.env.SENDGRID_INVOICE_TEMPLATE_ID as string,
+      attachments: [
+        {
+          content: generateInvoiceResult.pdf.toString('base64'),
+          filename: 'invoice.pdf',
+          type: 'application/pdf',
+          disposition: 'attachment',
+        },
+      ],
+    };
+    accmsg = {
+      to: process.env.ACCOUNTENT_EMAIL as string,
+      from: process.env.SENDGRID_ADMIN_EMAIL as string,
+      subject: 'Invoice - Act Revenue Share and Deal Revenue',
+      templateId: process.env.SENDGRID_ACCT_INVOICE_TEMPLATE_ID as string,
       attachments: [
         {
           content: generateInvoiceResult.pdf.toString('base64'),
@@ -109,4 +140,6 @@ export default async function sendInvoice(userId: number): Promise<void> {
       ],
     };
   }
+  await sgMail.send(msg);
+  await sgMail.send(accmsg);
 }

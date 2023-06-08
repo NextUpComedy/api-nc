@@ -55,17 +55,6 @@ const generateInvoice = async (payload: any): Promise<any> => {
       products: 'Shows',
       price: 'Revenue',
       vat: 'VAT',
-      // "invoice": "FACTUUR",  // Default to 'INVOICE'
-      // "number": "Nummer", // Defaults to 'Number'
-      // "date": "Datum", // Default to 'Date'
-      // "due-date": "Verloopdatum", // Defaults to 'Due Date'
-      // "subtotal": "Subtotaal", // Defaults to 'Subtotal'
-      // "products": "Producten", // Defaults to 'Products'
-      // "quantity": "Aantal", // Default to 'Quantity'
-      // "price": "Prijs", // Defaults to 'Price'
-      // "product-total": "Totaal", // Defaults to 'Total'
-      // "total": "Totaal", // Defaults to 'Total'
-      // "vat": "btw" // Defaults to 'vat'
     },
   };
   const result = await easyinvoice.createInvoice(data);
