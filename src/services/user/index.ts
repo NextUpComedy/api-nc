@@ -20,3 +20,4 @@ export { default as deletePlan } from './deletePlan';
 export { default as changeContentOwner } from './changeContentOwner';
 export { default as choosePaymentMethod } from './choosePaymentMethod';
 export { default as getCurentWatchedTime } from './getCurentWatchedTime';
+export { default as getContentReportByContentID } from './getContentReportbyContentId';

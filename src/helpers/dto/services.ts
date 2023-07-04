@@ -4,7 +4,7 @@ import {
 } from '../../interfaces/DtoUsers';
 import { IPagination, IMatchUserContent } from '../../interfaces/DtoContents';
 import {
-  ICustomContent, ICustomUser, IAddUser,
+  ICustomContent, ICustomUser, IAddUser, ICustomContentReport,
 } from '../../interfaces';
 
 type IGetPaginatedContentsDTO = (_: IPagination) => Promise<
@@ -16,6 +16,10 @@ type IGetContentReportDTO = (_: {
   limit: number;
   userId: number;
 }) => Promise<{ rows: ICustomContent[]; count: number }>;
+
+type IGetContentReportByIdDTO = (_: {
+  contentId: number;
+}) => Promise<{ rows: ICustomContentReport[]; count: number }>;
 
 type IGetPaginatedUsersDTO = (_: IPagination) => Promise<
   { rows: ICustomUser[]; count: number; } | ICustomUser[]
@@ -55,4 +59,5 @@ export {
   IUpdatePayoutRequestStatusDTO,
   IGetPayoutByIdDTO,
   IUpdateUserPaidRevenueDTO,
+  IGetContentReportByIdDTO,
 };

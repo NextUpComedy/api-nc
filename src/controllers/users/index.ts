@@ -9,3 +9,4 @@ export { default as getSpecificUserStatistics } from './getSpecificUserStatistic
 export { default as getUserContents } from './getUserContents';
 export { default as choosePaymentMethod } from './choosePaymentMethod';
 export { default as getCurentWatchedTime } from './getCurentWatchedTime';
+export { default as getContentReport } from './getContentReport';

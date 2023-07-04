@@ -22,6 +22,7 @@ export {
   changeContentOwner,
   choosePaymentMethod,
   getCurentWatchedTime,
+  getContentReportByContentID,
 } from './user';
 
 export {

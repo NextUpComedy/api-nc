@@ -1,4 +1,4 @@
-import { IUser, IContent } from 'nc-db-new';
+import { IUser, IContent, IContentReport } from 'nc-db-new';
 import {
   Secret,
 } from 'jsonwebtoken';
@@ -139,6 +139,7 @@ interface IReports {
 }
 
 type ICustomContent = Omit<IContent, 'deletedAt'>
+type ICustomContentReport = Omit<IContentReport, 'deletedAt'>
 type ICustomUser = Pick<IUser, 'id' | 'name' | 'email' | 'image'>
 
 interface IAddUser{
@@ -183,6 +184,7 @@ export {
   IUsers,
   ICustomUser,
   ICustomContent,
+  ICustomContentReport,
   IAddUser,
   IStatistics,
   IReports,

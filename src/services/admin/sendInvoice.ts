@@ -1,9 +1,17 @@
 import sgMail from '@sendgrid/mail';
-import fs from 'fs';
+import { AES, enc } from 'crypto-js';
 import { generateInvoice } from '../../helpers';
 import { getNumberOfContent, getUserById } from '../user';
+import config from '../../config';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
+const { ENCRYPTION_SECRET_KEY } = config.server;
+
+const decryptData = (encryptedData: string): string => {
+  const decryptedBytes = AES.decrypt(encryptedData, ENCRYPTION_SECRET_KEY);
+  const decryptedText = decryptedBytes.toString(enc.Utf8);
+  return decryptedText;
+};
 
 export default async function sendInvoice(userId: number): Promise<void> {
   const user = await getUserById(userId);
@@ -29,11 +37,15 @@ export default async function sendInvoice(userId: number): Promise<void> {
       tax: vatPercentage,
       price: item.owedAccRevenue,
     }));
+
+    const stripeIdstripeId = decryptData(user?.accountNumber as string);
+    console.log(stripeIdstripeId);
+
     const generateInvoiceResult = await generateInvoice({
-      holderName: user?.accountHolderName,
-      accountNumber: user?.accountNumber,
-      sortCode: user?.sortCode,
-      stripeId: user?.stripeAccount,
+      holderName: decryptData(user?.accountHolderName as string),
+      accountNumber: decryptData(user?.accountNumber as string),
+      sortCode: decryptData(user?.sortCode as string),
+      stripeId: decryptData(user?.stripeAccount as string),
       products,
     });
     const recipients = [user?.email];

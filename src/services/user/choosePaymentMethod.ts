@@ -1,8 +1,11 @@
+import { AES } from 'crypto-js';
 import { User } from 'nc-db-new';
 import { IChoosePaymentMethod } from '../../interfaces/DtoContents';
+import config from '../../config';
 
-const choosePaymentMethod = async ({ payload }:
-    IChoosePaymentMethod): Promise<void> => {
+const { ENCRYPTION_SECRET_KEY } = config.server;
+
+const choosePaymentMethod = async ({ payload }: IChoosePaymentMethod): Promise<void> => {
   const { preferredPayoutMethod, userId, vatPayer } = payload;
   const user = await User.findOne({
     where: { id: userId },
@@ -23,9 +26,15 @@ const choosePaymentMethod = async ({ payload }:
     if (!bankAccountNumber || !bankSortCode || !actName) {
       throw new Error('Missing bank account information.');
     }
-    user.accountNumber = bankAccountNumber;
-    user.sortCode = bankSortCode;
-    user.accountHolderName = actName;
+
+    const encryptedAccountNumber = AES.encrypt(bankAccountNumber, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedSortCode = AES.encrypt(bankSortCode, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedAccountHolderName = AES.encrypt(actName, ENCRYPTION_SECRET_KEY).toString();
+
+    user.accountNumber = encryptedAccountNumber;
+    user.sortCode = encryptedSortCode;
+    user.accountHolderName = encryptedAccountHolderName;
+
     if (vatPayer === true) {
       user.vatPayer = true;
     }
@@ -34,10 +43,13 @@ const choosePaymentMethod = async ({ payload }:
     if (!stripeAccountId) {
       throw new Error('Missing stripe account information.');
     }
+    const encryptedStripeAccountId = AES.encrypt(stripeAccountId, ENCRYPTION_SECRET_KEY).toString();
+
+    user.stripeAccount = encryptedStripeAccountId;
+
     if (vatPayer === true) {
       user.vatPayer = true;
     }
-    user.stripeAccount = stripeAccountId;
   } else if (preferredPayoutMethod === 'ourStripe') {
     // do nothing
   } else {
