@@ -95,3 +95,13 @@ export const INVALID_REPORT_DURATION = new CustomError(
   messages.responses.WRONG_REPORT_DURATION,
   httpStatus.BAD_REQUEST,
 );
+
+export const USER_HAS_OTHER_REVENUE = new CustomError(
+  messages.responses.USER_HAS_OTHER_REVENUE,
+  httpStatus.BAD_REQUEST,
+);
+
+export const CONTENT_NOT_MATCHED_ERROR = new CustomError(
+  messages.authResponse.CONTENT_NOT_MATCHED_ERROR,
+  httpStatus.BAD_REQUEST,
+);

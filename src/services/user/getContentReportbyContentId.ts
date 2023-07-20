@@ -5,7 +5,7 @@ const getContentReportByContentID = async (
 ): Promise<any> => {
   const result = await ContentReport.findAndCountAll({
     where: { contentId },
-    attributes: ['id', 'watchedSeconds', 'revenue', 'owedRevenue', 'reportId'],
+    attributes: ['id', 'watchedSeconds', 'revenue', 'owedRevenue', 'reportId', 'otherRevenue', 'paid'],
     include: [
       {
         model: Content,

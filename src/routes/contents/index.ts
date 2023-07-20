@@ -5,6 +5,7 @@ import {
   matchUserContent,
   changeContentOwner,
   getMatchedContents,
+  addOtherRevenue,
 } from '../../controllers';
 import {
   constants,
@@ -25,5 +26,6 @@ router.get('/', validator.query(getPaginatedDataSchema), getUnMatchContent);
 router.get('/get-matched-content', validator.query(getPaginatedDataSchema), getMatchedContents);
 router.patch('/match-user-content', validator.body(matchUserContentSchema), matchUserContent);
 router.patch('/change-content-owner', validator.body(changeOwnerSchema), changeContentOwner);
+router.patch('/add-other-revenue', addOtherRevenue);
 
 export default router;

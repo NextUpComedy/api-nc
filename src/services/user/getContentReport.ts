@@ -19,6 +19,8 @@ const getNumberOfContent: IGetContentReportDTO = ({ page, limit, userId }) => {
           'watchedSeconds',
           'revenue',
           'owedRevenue',
+          'otherRevenue',
+          'paid',
         ],
       },
     ],

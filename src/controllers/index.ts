@@ -55,4 +55,5 @@ export {
   getMatchedContents,
   matchUserContent,
   changeContentOwner,
+  addOtherRevenue,
 } from './contents';
