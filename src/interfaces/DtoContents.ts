@@ -30,5 +30,11 @@ export interface IChoosePaymentMethod {
     actName?: string,
     stripeAccountId?: string,
     vatPayer?: boolean,
+    accountHolderName?: string,
+    bankName?: string,
+    ibanNumber?: string,
+    swiftCode?: string,
+    bicCode?: string,
+    bankAddress?: string,
   }
 }
