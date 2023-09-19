@@ -1,5 +1,5 @@
 import Big from 'big.js';
-import { sequelize, ContentReport } from 'nc-db-new';
+import { sequelize, ContentReport, Content } from 'nc-db-new';
 import { NextFunction, Response } from 'express';
 import {
   getPayoutRequestById,
@@ -33,16 +33,30 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
     } = dto.generalDTO.payoutDTO(payoutRequest);
 
     if (!preferredPayoutMethod) throw errorMessages.NO_USER_STRIPE_ACCOUNT;
-    // sendInvoice(userId);
+    sendInvoice(userId, payoutId);
     // find all content reports for this payout request which has paid colum as false
-    await ContentReport.update(
-      { paid: true },
-      {
-        where: {
-          paid: false,
-        },
+    const contentItems = await Content.findAll({
+      where: {
+        userId, // Replace with the actual userId you want to filter by
       },
-    );
+    });
+
+    const updatePromises = contentItems.map(async (contentItem) => {
+      // Update the ContentReport rows where paid is false for each content item
+      await ContentReport.update(
+        { paid: true },
+        {
+          where: {
+            contentId: contentItem.id,
+            paid: false,
+            // Add any additional conditions if needed
+          },
+        },
+      );
+    });
+
+    // Wait for all the updates to complete
+    await Promise.all(updatePromises);
 
     await updatePayoutStatus({
       payoutRequest, payoutStatusId: payoutStatuesIds.APPROVED, transaction, updatedBy,

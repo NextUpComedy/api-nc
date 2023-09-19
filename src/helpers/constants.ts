@@ -102,6 +102,8 @@ export const userRoles = {
   MASTER_ADMIN: 2,
   ADMIN: 3,
   COMEDIAN: 4,
+  ACCOUNTANT: 5,
+  VENUE: 6,
 };
 
 export const errorResponse = {
