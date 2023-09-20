@@ -13,7 +13,7 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
     const { totalRevenue, paidRevenue } = user;
     const balance = +totalRevenue - +paidRevenue;
     const content = await getNumberOfContent(
-      { page: 1, limit: 40, userId: Number(user.id) },
+      { page: 1, limit: 100, userId: Number(user.id) },
     );
 
     response
