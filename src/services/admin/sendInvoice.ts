@@ -159,5 +159,5 @@ export default async function sendInvoice(userId: number, payoutId:number): Prom
       ],
     };
   }
-  await sgMail.send(msg);
+  // await sgMail.send(msg);
 }
