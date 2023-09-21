@@ -50,8 +50,33 @@ const choosePaymentMethod = async ({ payload }: IChoosePaymentMethod): Promise<v
     if (vatPayer === true) {
       user.vatPayer = true;
     }
-  } else if (preferredPayoutMethod === 'ourStripe') {
-    // do nothing
+  } else if (preferredPayoutMethod === 'international') {
+    const {
+      accountHolderName, bankName, ibanNumber, swiftCode, bicCode, bankAccountNumber, bankAddress,
+    } = payload;
+    if (!accountHolderName || !bankName || !ibanNumber || !swiftCode
+      || !bicCode || !bankAccountNumber || !bankAddress) {
+      console.log(
+
+        bankAccountNumber,
+      );
+      throw new Error('Missing international account information.');
+    }
+    const encryptedAccountHolderName = AES.encrypt(accountHolderName, ENCRYPTION_SECRET_KEY)
+      .toString();
+    const encryptedBankName = AES.encrypt(bankName, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedIbanNumber = AES.encrypt(ibanNumber, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedSwiftCode = AES.encrypt(swiftCode, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedBicCode = AES.encrypt(bicCode, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedAccountNumber = AES.encrypt(bankAccountNumber, ENCRYPTION_SECRET_KEY).toString();
+    const encryptedBankAddress = AES.encrypt(bankAddress, ENCRYPTION_SECRET_KEY).toString();
+    user.accountHolderName = encryptedAccountHolderName;
+    user.bankName = encryptedBankName;
+    user.ibanNumber = encryptedIbanNumber;
+    user.swiftCode = encryptedSwiftCode;
+    user.bicCode = encryptedBicCode;
+    user.accountNumber = encryptedAccountNumber;
+    user.bankAddress = encryptedBankAddress;
   } else {
     throw new Error('Invalid preferred payout method.');
   }

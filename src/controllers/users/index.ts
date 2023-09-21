@@ -10,3 +10,4 @@ export { default as getUserContents } from './getUserContents';
 export { default as choosePaymentMethod } from './choosePaymentMethod';
 export { default as getCurentWatchedTime } from './getCurentWatchedTime';
 export { default as getContentReport } from './getContentReport';
+export { default as getPaymentDetails } from './getPaymentDetails';

@@ -23,6 +23,7 @@ export {
   choosePaymentMethod,
   getCurentWatchedTime,
   getContentReportByContentID,
+  getPaymentDetails,
 } from './user';
 
 export {
