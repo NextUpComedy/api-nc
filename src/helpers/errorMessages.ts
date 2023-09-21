@@ -86,6 +86,11 @@ export const STRIPE_ERROR = (message:string):CustomError => new CustomError(
   httpStatus.BAD_REQUEST,
 );
 
+export const ADD_STRIPE_ACCOUNT_ERROR = new CustomError(
+  messages.responses.ADD_STRIPE_ACCOUNT_ERROR,
+  httpStatus.BAD_REQUEST,
+);
+
 export const INVALID_REPORT_DURATION = new CustomError(
   messages.responses.WRONG_REPORT_DURATION,
   httpStatus.BAD_REQUEST,

@@ -1,4 +1,5 @@
 import Big from 'big.js';
+import { Request } from 'express';
 import {
   IResetPassword, IEditProfile, IGetPaginatedPayouts, IPayoutRequest, ISortOptions,
 } from '../../interfaces/DtoUsers';
@@ -28,3 +29,5 @@ export const askForPayoutDTO = (request:IUserRequest):IPayoutRequest => ({
   updatedBy: request?.user?.id as number,
   payoutStatusId: constants.payoutStatuesIds.PENDING,
 });
+
+export const getCurentWatchedTimeDTO = (request: Request): any => request.body;

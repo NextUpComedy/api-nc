@@ -75,11 +75,11 @@ router.patch('/payouts/:payoutId/approve', validator.params(payoutIdSchema), app
 router.patch('/payouts/:payoutId/reject', validator.params(payoutIdSchema), validator.body(payoutRejectionReasonSchema), rejectPayout);
 
 router.put('/report', validator.body(setReportSchema), setReport);
+router.patch('/edit-content-data', validator.body(editContentDataSchema), editContentData);
 
 router.use(checkUserRole([MASTER_ADMIN]));
 router.get('/dashboard-settings', getDashboardSettings);
 router.patch('/edit-dashboard-settings', validator.body(editSystemSettingsSchema), editDashboardSettings);
-router.patch('/edit-content-data', validator.body(editContentDataSchema), editContentData);
 router.patch('/block-user/:userId', validator.params(idSchema), blockUser);
 router.get('/plans', getPlans);
 router.put('/plans', validator.body(putPlanSchema), putPlans);

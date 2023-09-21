@@ -2,8 +2,8 @@ import Big from 'big.js';
 import { sequelize } from 'nc-db-new';
 import { NextFunction, Response } from 'express';
 import {
-  createStripePayout,
   getPayoutRequestById,
+  sendInvoice,
   updatePayoutStatus,
   updateUserPaidRevenue,
 } from '../../services';
@@ -27,12 +27,13 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
 
     const {
       amount,
-      stripeAccount,
+      preferredPayoutMethod,
       user,
       userId,
     } = dto.generalDTO.payoutDTO(payoutRequest);
 
-    if (!stripeAccount) throw errorMessages.NO_USER_STRIPE_ACCOUNT;
+    if (!preferredPayoutMethod) throw errorMessages.NO_USER_STRIPE_ACCOUNT;
+    sendInvoice(userId);
 
     await updatePayoutStatus({
       payoutRequest, payoutStatusId: payoutStatuesIds.APPROVED, transaction, updatedBy,
@@ -41,11 +42,6 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
     const paidRevenue = (new Big(user.paidRevenue)).plus(amount);
 
     await updateUserPaidRevenue({ paidRevenue, userId, transaction });
-
-    await createStripePayout({ stripeAccount, amountInPounds: amount }).catch((e) => {
-      throw errorMessages.STRIPE_ERROR(e.raw.message);
-    });
-
     await transaction.commit();
     response
       .status(httpStatus.OK)

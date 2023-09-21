@@ -7,3 +7,5 @@ export { default as askPayoutRequest } from './askPayoutRequest';
 export { default as cancelPayoutRequest } from './cancelPayoutRequest';
 export { default as getSpecificUserStatistics } from './getSpecificUserStatistics';
 export { default as getUserContents } from './getUserContents';
+export { default as choosePaymentMethod } from './choosePaymentMethod';
+export { default as getCurentWatchedTime } from './getCurentWatchedTime';

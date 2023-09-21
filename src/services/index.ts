@@ -20,6 +20,8 @@ export {
   getPlans,
   deletePlan,
   changeContentOwner,
+  choosePaymentMethod,
+  getCurentWatchedTime,
 } from './user';
 
 export {
@@ -33,4 +35,5 @@ export {
   updatePayoutStatus,
   updateUserPaidRevenue,
   editContentData,
+  sendInvoice,
 } from './admin';

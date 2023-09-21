@@ -31,7 +31,7 @@ export default async (
     }
 
     const {
-      id, name, userRoleId, image,
+      id, name, userRoleId, image, preferredPayoutMethod,
     } = user;
     const token = await signToken(
       {
@@ -39,6 +39,7 @@ export default async (
         name,
         email,
         roleId: userRoleId,
+        preferredPayoutMethod,
       },
       { expiresIn },
     );
@@ -54,6 +55,7 @@ export default async (
           email,
           roleId: userRoleId,
           id: Number(id),
+          preferredPayoutMethod,
         },
       });
   } catch (error) {

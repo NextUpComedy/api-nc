@@ -12,4 +12,5 @@ export default Joi.object({
   feePaid: positiveNumber,
   recoveredCosts: positiveNumber,
   otherRevenue: otherRevenueJOI,
+  notes: Joi.string(),
 });

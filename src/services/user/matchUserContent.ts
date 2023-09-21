@@ -19,6 +19,7 @@ type IMatchUserContent = (userData: {
   nextUpToOwedSplitPercentage: string;
   expiredAfterInYears: number;
   otherRevenue: JSON;
+  notes: string;
 }) => Promise<IContent>;
 
 const matchUserContent: IMatchUserContent = async ({
@@ -32,6 +33,7 @@ const matchUserContent: IMatchUserContent = async ({
   nextUpToOwedSplitPercentage,
   expiredAfterInYears,
   otherRevenue,
+  notes,
 }) => {
   const [content, user] = await Promise.all([
     Content.findOne({
@@ -62,6 +64,7 @@ const matchUserContent: IMatchUserContent = async ({
   content.feePaid = feePaid;
   content.recoveredCosts = recoveredCosts;
   content.otherRevenue = otherRevenue;
+  content.notes = notes;
   let servicesRevenue = 0;
   if (otherRevenue !== null && otherRevenue !== undefined) {
     const otherRevenueString = JSON.stringify(otherRevenue);
@@ -86,7 +89,7 @@ const matchUserContent: IMatchUserContent = async ({
       const nextupRevenue: Big = new Big(revenue).times(
         nextUpToOwedSplitPercentage,
       );
-      const remaingRevenue: Big = new Big(revenue).minus(nextupRevenue).plus(servicesRevenue);
+      const remaingRevenue: Big = new Big(revenue).minus(nextupRevenue);
 
       const toDate = new Date(report.watchTimeTo);
       const fromDate: Date = new Date(report.watchTimeFrom);
@@ -115,7 +118,7 @@ const matchUserContent: IMatchUserContent = async ({
       const reimbursementBeforeExpRevenue = beforeExpRevenue.minus(
         shareableBeforeExpRevenue,
       );
-      owedRevenue = owedRevenue.plus(shareableBeforeExpRevenue);
+      owedRevenue = owedRevenue.plus(shareableBeforeExpRevenue).plus(servicesRevenue);
 
       content.nextUpAccRevenue = nextupRevenue
         .plus(content.nextUpAccRevenue)

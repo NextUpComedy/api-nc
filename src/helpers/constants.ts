@@ -38,6 +38,7 @@ export const messages = {
     PLAN_DELETED: 'PLAN DELETED SUCCESSFULLY',
     CONTENT_OWNER_CHANGED: 'CONTENT OWNER CHANGED SUCCESSFULLY',
     CONTENT_CHANGED: 'CONTENT CHANGED SUCCESSFULLY',
+    PAYMENT_METHOD_CHANGED: 'PAYMENT METHOD CHANGED SUCCESSFULLY',
   },
   check: {
     RESET_EMAIL_CHECK: 'RESET EMAIL CHECK',
@@ -67,6 +68,8 @@ export const messages = {
     PENDING_CALCULATION_PROCCESS: (remainingMins:number):string => `There is a pending calculation proccess, will be settled after ${remainingMins} minutes`,
     SUCCESS_RESTART_OF_CALCULATION_PROCCESS: 'Failed calculation proccess was restarted successfully',
     WRONG_REPORT_DURATION: "Report end date shouldn't be the same as report start",
+    ADD_STRIPE_ACCOUNT_ERROR: 'ADD STRIPE ACCOUNT ERROR',
+
   },
   stripe: {
     SUCCESS_ADD: "User's Stripe Account Added Successfully",

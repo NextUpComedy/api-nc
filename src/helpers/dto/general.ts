@@ -39,12 +39,12 @@ export const payoutRejectionReasonDTO = (request: IUserRequest):{rejectionReason
 
 export const payoutDTO = (payout:IPayout):{
   amount:Big,
-  stripeAccount?:string,
+  preferredPayoutMethod?:string,
   user:IUser
   userId:number
 } => ({
   amount: new Big(payout.amount),
-  stripeAccount: payout.user?.stripeAccount,
+  preferredPayoutMethod: payout.user?.preferredPayoutMethod,
   user: payout.user as IUser,
   userId: payout.userId,
 });

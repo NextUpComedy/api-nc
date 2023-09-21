@@ -15,6 +15,7 @@ Promise<void> => {
       email,
       name,
       image,
+      preferredPayoutMethod,
     } = user;
 
     response
@@ -22,7 +23,7 @@ Promise<void> => {
       .json({
         message: messages.authResponse.APPROVED_USER,
         data: {
-          id, roleId: userRoleId, email, name, image,
+          id, roleId: userRoleId, email, name, image, preferredPayoutMethod,
         },
       });
   } catch (error) {
