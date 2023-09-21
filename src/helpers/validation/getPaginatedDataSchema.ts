@@ -7,5 +7,5 @@ export default Joi.object({
   limit,
   page,
   title: stringValidation,
-  id: guid,
+  id: page,
 });

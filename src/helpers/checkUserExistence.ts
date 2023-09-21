@@ -1,4 +1,4 @@
-import { IUser } from 'db-models-nc';
+import { IUser } from 'nc-db-new';
 import CustomError from './CustomError';
 import { messages, httpStatus, userStatus } from './constants';
 import { getUserByEmail } from '../services';

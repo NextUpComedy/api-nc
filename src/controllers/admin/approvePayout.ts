@@ -1,5 +1,5 @@
 import Big from 'big.js';
-import { sequelize } from 'db-models-nc';
+import { sequelize } from 'nc-db-new';
 import { NextFunction, Response } from 'express';
 import {
   createStripePayout,

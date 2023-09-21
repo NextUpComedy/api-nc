@@ -32,6 +32,7 @@ export {
   rejectUser,
   blockUser,
   editDashboardSettings,
+  editContentData,
   getDashboardSettings,
   getPaginatedUsers,
   approvePayout,
@@ -48,5 +49,7 @@ export {
 
 export {
   getUnMatchContent,
+  getMatchedContents,
   matchUserContent,
+  changeContentOwner,
 } from './contents';

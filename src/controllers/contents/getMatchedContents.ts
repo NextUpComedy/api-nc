@@ -1,17 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { dto } from '../../helpers';
-import { getUnmatchedContent } from '../../services';
+import { getMatchedContent } from '../../services';
 
 export default async (request: Request, response: Response, next: NextFunction): Promise<void> => {
   const paginationData = dto.generalDTO.paginationDTO(request);
 
   try {
-    const data = await getUnmatchedContent(paginationData);
+    const data = await getMatchedContent(paginationData);
 
     response
       .json({ data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

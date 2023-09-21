@@ -1,4 +1,4 @@
-import { Settings } from 'db-models-nc';
+import { Settings } from 'nc-db-new';
 
 type IGetPlans = () => Promise<{ [key: string]: number }>;
 

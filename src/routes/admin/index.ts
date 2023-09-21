@@ -24,6 +24,7 @@ import {
   deletePlan,
   setStripeAccount,
   setReport,
+  editContentData,
 } from '../../controllers';
 import {
   constants,
@@ -41,6 +42,7 @@ import {
   planIdSchema,
   setStripeAccountSchema,
   setReportSchema,
+  editContentDataSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
@@ -77,6 +79,7 @@ router.put('/report', validator.body(setReportSchema), setReport);
 router.use(checkUserRole([MASTER_ADMIN]));
 router.get('/dashboard-settings', getDashboardSettings);
 router.patch('/edit-dashboard-settings', validator.body(editSystemSettingsSchema), editDashboardSettings);
+router.patch('/edit-content-data', validator.body(editContentDataSchema), editContentData);
 router.patch('/block-user/:userId', validator.params(idSchema), blockUser);
 router.get('/plans', getPlans);
 router.put('/plans', validator.body(putPlanSchema), putPlans);

@@ -1,6 +1,6 @@
 import {
   Content, IContent, ContentReport, Report, User,
-} from 'db-models-nc';
+} from 'nc-db-new';
 import {
   min, max, differenceInDays, addYears,
 } from 'date-fns';
@@ -18,6 +18,7 @@ type IMatchUserContent = (userData: {
   recoveredCosts: string;
   nextUpToOwedSplitPercentage: string;
   expiredAfterInYears: number;
+  otherRevenue: JSON;
 }) => Promise<IContent>;
 
 const matchUserContent: IMatchUserContent = async ({
@@ -30,6 +31,7 @@ const matchUserContent: IMatchUserContent = async ({
   recoveredCosts,
   nextUpToOwedSplitPercentage,
   expiredAfterInYears,
+  otherRevenue,
 }) => {
   const [content, user] = await Promise.all([
     Content.findOne({
@@ -59,26 +61,32 @@ const matchUserContent: IMatchUserContent = async ({
   content.advance = advance;
   content.feePaid = feePaid;
   content.recoveredCosts = recoveredCosts;
-
+  content.otherRevenue = otherRevenue;
+  let servicesRevenue = 0;
+  if (otherRevenue !== null && otherRevenue !== undefined) {
+    const otherRevenueString = JSON.stringify(otherRevenue);
+    const otherRevenueObj = JSON.parse(otherRevenueString);
+    otherRevenueObj.forEach((item:any) => {
+      servicesRevenue += item.revenue;
+    });
+  }
   const cReports = content?.contentReports?.map(
     ({
       id,
       contentId,
       reportId,
       watchedSeconds,
+      prevWatchedSeconds,
       revenue,
       createdBy,
       updatedBy,
-      tvodTicketsCount,
-      tvodSeconds,
-      watches,
       report,
     }) => {
       if (!report) throw errorMessages.BAD_REQUEST_ERROR;
       const nextupRevenue: Big = new Big(revenue).times(
         nextUpToOwedSplitPercentage,
       );
-      const remaingRevenue: Big = new Big(revenue).minus(nextupRevenue);
+      const remaingRevenue: Big = new Big(revenue).minus(nextupRevenue).plus(servicesRevenue);
 
       const toDate = new Date(report.watchTimeTo);
       const fromDate: Date = new Date(report.watchTimeFrom);
@@ -92,6 +100,7 @@ const matchUserContent: IMatchUserContent = async ({
         beforeExpRevenue,
       );
       let owedRevenue = afterExpRevenue;
+
       const remainingCosts = new Big(filmingCosts)
         .plus(feePaid)
         .plus(advance)
@@ -125,12 +134,10 @@ const matchUserContent: IMatchUserContent = async ({
         contentId,
         reportId,
         watchedSeconds,
+        prevWatchedSeconds,
         revenue,
         createdBy,
         updatedBy,
-        tvodTicketsCount,
-        tvodSeconds,
-        watches,
         nextupRevenue: nextupRevenue.toString(),
         owedRevenue: owedRevenue.toString(),
         beforeExpiryReportDaysPercentage:

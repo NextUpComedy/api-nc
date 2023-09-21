@@ -1,4 +1,4 @@
-import { IUser } from 'db-models-nc';
+import { IUser } from 'nc-db-new';
 
 export interface IForgetPassword {
   email: string,

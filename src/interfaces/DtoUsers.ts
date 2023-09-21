@@ -1,5 +1,5 @@
 import Big from 'big.js';
-import { IPayout, IUser } from 'db-models-nc';
+import { IPayout, IUser } from 'nc-db-new';
 import { Transaction } from 'sequelize';
 
 export interface IRejectUser {

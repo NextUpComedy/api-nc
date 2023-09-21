@@ -1,4 +1,4 @@
-import { Payout, User } from 'db-models-nc';
+import { Payout, User } from 'nc-db-new';
 import { IGetPayoutByIdDTO } from '../../helpers/dto/services';
 
 const getPayoutRequestById: IGetPayoutByIdDTO = (payoutId: number) => Payout.findByPk(payoutId, {

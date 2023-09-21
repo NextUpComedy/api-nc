@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { Content } from 'db-models-nc';
+import { Content } from 'nc-db-new';
 import { IGetPaginatedContentsDTO } from '../../helpers/dto/services';
 
 const getUnmatchedContent: IGetPaginatedContentsDTO = ({

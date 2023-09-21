@@ -33,6 +33,8 @@ export {
   planIdSchema,
   setStripeAccountSchema,
   setReportSchema,
+  changeOwnerSchema,
+  editContentDataSchema,
 } from './validation';
 
 export { forgetPasswordDTO } from './dto/auth';

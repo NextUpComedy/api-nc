@@ -1,4 +1,4 @@
-import { Payout, PayoutStatus } from 'db-models-nc';
+import { Payout, PayoutStatus } from 'nc-db-new';
 import { IGetPaginatedPayoutsDTO } from '../../helpers/dto/services';
 
 const getPayouts:IGetPaginatedPayoutsDTO = async ({

@@ -19,10 +19,12 @@ export {
   putPlans,
   getPlans,
   deletePlan,
+  changeContentOwner,
 } from './user';
 
 export {
   getUnmatchedContent,
+  getMatchedContent,
 } from './contents';
 
 export {
@@ -30,4 +32,5 @@ export {
   getPayoutRequestById,
   updatePayoutStatus,
   updateUserPaidRevenue,
+  editContentData,
 } from './admin';

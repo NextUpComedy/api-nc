@@ -17,3 +17,4 @@ export { default as getPaginatedUserContents } from './getPaginatedUserContents'
 export { default as putPlans } from './putPlans';
 export { default as getPlans } from './getPlans';
 export { default as deletePlan } from './deletePlan';
+export { default as changeContentOwner } from './changeContentOwner';

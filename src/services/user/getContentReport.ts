@@ -1,4 +1,4 @@
-import { Content, ContentReport } from 'db-models-nc';
+import { Content, ContentReport } from 'nc-db-new';
 import { IGetContentReportDTO } from '../../helpers/dto/services';
 
 const getNumberOfContent: IGetContentReportDTO = ({ page, limit, userId }) => {
@@ -18,8 +18,6 @@ const getNumberOfContent: IGetContentReportDTO = ({ page, limit, userId }) => {
           'id',
           'watchedSeconds',
           'revenue',
-          'tvodTicketsCount',
-          'tvodSeconds',
           'owedRevenue',
         ],
       },

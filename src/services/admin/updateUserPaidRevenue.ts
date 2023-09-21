@@ -1,4 +1,4 @@
-import { User } from 'db-models-nc';
+import { User } from 'nc-db-new';
 import { IUpdateUserPaidRevenueDTO } from '../../helpers/dto/services';
 
 const updateUserPaidRevenue:IUpdateUserPaidRevenueDTO = async ({

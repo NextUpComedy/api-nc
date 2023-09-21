@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import { getDashboardSettings, sequelize } from 'db-models-nc';
+import { getDashboardSettings, sequelize } from 'nc-db-new';
 import { dto } from '../helpers';
 import { IServerAddress } from '../interfaces';
 import Logger from '../helpers/logger';
@@ -55,7 +55,7 @@ const onError = (error: NodeJS.ErrnoException): void => {
       Logger.info(`Listening on http://${bind}`);
     };
 
-    server.listen(port as number, process.env.NODE_ENV === 'development' ? 'localhost' : undefined);
+    server.listen(port as number, process.env.NODE_ENV === 'development' ? '127.0.0.1' : undefined);
     server.on('listening', onListening);
     server.on('error', onError);
   } catch (err) {

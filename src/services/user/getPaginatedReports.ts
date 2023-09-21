@@ -1,4 +1,4 @@
-import { Report } from 'db-models-nc';
+import { Report } from 'nc-db-new';
 
 type IGetPaginatedReports = ({ page, limit }: { page: number, limit: number }) => Promise<any>;
 
@@ -8,7 +8,7 @@ const getPaginatedReports: IGetPaginatedReports = async ({ page, limit }) => {
   const reports = await Report.findAndCountAll({
     offset,
     limit,
-    attributes: ['watchTimeFrom', 'watchTimeTo', 'overallWatchedSeconds', 'totalRevenue'],
+    attributes: ['watchTimeFrom', 'watchTimeTo', 'overallWatchedSeconds', 'prevOverallWatchedSeconds', 'totalRevenue'],
     order: [['createdAt', 'DESC']],
   });
 

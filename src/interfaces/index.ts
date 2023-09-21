@@ -1,4 +1,4 @@
-import { IUser, IContent } from 'db-models-nc';
+import { IUser, IContent } from 'nc-db-new';
 import {
   Secret,
 } from 'jsonwebtoken';
@@ -87,6 +87,7 @@ interface IContents {
   primaryCategory: string;
   createdAt: string;
   updatedAt: string;
+  otherRevenue?: object;
 }
 
 interface IUsers {
@@ -130,8 +131,9 @@ interface IReports {
   rows: {
     watchTimeFrom: string;
     watchTimeTo: string;
-    overallWatchedSeconds: string;
-    totalRevenue: string;
+    overallWatchedSeconds: number;
+    prevOverallWatchedSeconds: number;
+    totalRevenue: number;
   }
 }
 

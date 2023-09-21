@@ -2,7 +2,7 @@ export interface IPagination {
   limit: number,
   page: number,
   title?: string | undefined,
-  id?: string | undefined,
+  id?: number | undefined,
 }
 
 export interface IMatchUserContent {
@@ -13,4 +13,10 @@ export interface IMatchUserContent {
   advance: string,
   feePaid: string
   recoveredCosts: string
+}
+
+export interface IChangeContentOwner {
+  id: string,
+  oldUserId: number,
+  newUserId: number,
 }
