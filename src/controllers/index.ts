@@ -22,6 +22,7 @@ export {
   getUserContents,
   choosePaymentMethod,
   getCurentWatchedTime,
+  getContentReport,
 } from './users';
 
 export {
@@ -54,4 +55,5 @@ export {
   getMatchedContents,
   matchUserContent,
   changeContentOwner,
+  addOtherRevenue,
 } from './contents';

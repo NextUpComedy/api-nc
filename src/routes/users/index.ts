@@ -12,6 +12,7 @@ import {
   getUserContents,
   choosePaymentMethod,
   getCurentWatchedTime,
+  getContentReport,
 } from '../../controllers';
 import {
   constants,
@@ -43,6 +44,7 @@ router.patch('/payouts', cancelPayoutRequest);
 router.patch('/payment-method', choosePaymentMethod);
 
 router.get('/statistics', getUserStatistics);
+router.get('/get-content-reports/:contentId', getContentReport);
 
 router.use(checkUserRole([MASTER_ADMIN]));
 router.get('/user-data/:userId', validator.params(idSchema), getUserDataByID);

@@ -29,7 +29,6 @@ export default async (request: Request, response: Response, next: NextFunction):
       userId,
       nextUpToOwedSplitPercentage,
       expiredAfterInYears,
-      otherRevenue: request.body.otherRevenue,
       notes,
     });
 

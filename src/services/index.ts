@@ -22,11 +22,13 @@ export {
   changeContentOwner,
   choosePaymentMethod,
   getCurentWatchedTime,
+  getContentReportByContentID,
 } from './user';
 
 export {
   getUnmatchedContent,
   getMatchedContent,
+  addOtherRevenue,
 } from './contents';
 
 export {
