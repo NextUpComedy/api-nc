@@ -1,5 +1,6 @@
 import sgMail from '@sendgrid/mail';
 import { AES, enc } from 'crypto-js';
+import { Payout } from 'nc-db-new';
 import { generateInvoice } from '../../helpers';
 import { getNumberOfContent, getUserById } from '../user';
 import config from '../../config';
@@ -13,7 +14,7 @@ const decryptData = (encryptedData: string): string => {
   return decryptedText;
 };
 
-export default async function sendInvoice(userId: number): Promise<void> {
+export default async function sendInvoice(userId: number, payoutId:number): Promise<void> {
   const user = await getUserById(userId);
   const isVatPayer = user?.vatPayer;
   let vatPercentage = 0;
@@ -38,14 +39,10 @@ export default async function sendInvoice(userId: number): Promise<void> {
       price: item.owedAccRevenue,
     }));
 
-    const stripeIdstripeId = decryptData(user?.accountNumber as string);
-    console.log(stripeIdstripeId);
-
     const generateInvoiceResult = await generateInvoice({
       holderName: decryptData(user?.accountHolderName as string),
       accountNumber: decryptData(user?.accountNumber as string),
       sortCode: decryptData(user?.sortCode as string),
-      stripeId: decryptData(user?.stripeAccount as string),
       products,
     });
     const recipients = [user?.email];
@@ -64,6 +61,15 @@ export default async function sendInvoice(userId: number): Promise<void> {
         },
       ],
     };
+    // save invoice in payout table where payoutId = payoutId
+    Payout.update(
+      { invoice: generateInvoiceResult.pdf.toString('base64') },
+      {
+        where: {
+          id: payoutId,
+        },
+      },
+    );
 
     accmsg = {
       to: process.env.ACCOUNTENT_EMAIL as string,
@@ -137,6 +143,7 @@ export default async function sendInvoice(userId: number): Promise<void> {
         },
       ],
     };
+
     accmsg = {
       to: process.env.ACCOUNTENT_EMAIL as string,
       from: process.env.SENDGRID_ADMIN_EMAIL as string,
@@ -152,6 +159,5 @@ export default async function sendInvoice(userId: number): Promise<void> {
       ],
     };
   }
-  await sgMail.send(msg);
-  await sgMail.send(accmsg);
+  // await sgMail.send(msg);
 }

@@ -106,7 +106,9 @@ interface IStatistics {
     rejectedUsers: number,
     bannedUsers: number,
     contents: number,
-    payouts: number
+    payouts: number,
+    totalPayouts: number,
+    paidPayouts: number,
   },
   revenues: {
     paid: {
@@ -122,7 +124,9 @@ interface IStatistics {
       pendingUsers: number,
       approvedUsers: number,
       rejectedUsers: number,
-      bannedUsers: number
+      bannedUsers: number,
+      totalPayouts: number,
+      paidPayouts: number,
     }
   }
 }

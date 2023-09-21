@@ -102,6 +102,8 @@ export const userRoles = {
   MASTER_ADMIN: 2,
   ADMIN: 3,
   COMEDIAN: 4,
+  ACCOUNTANT: 5,
+  VENUE: 6,
 };
 
 export const errorResponse = {
@@ -174,6 +176,8 @@ export const getStatisticsInitialValues = (): IStatistics => ({
     bannedUsers: 0,
     contents: 0,
     payouts: 0,
+    totalPayouts: 0,
+    paidPayouts: 0,
   },
   revenues: {
     paid: {
@@ -190,6 +194,8 @@ export const getStatisticsInitialValues = (): IStatistics => ({
       approvedUsers: 0,
       rejectedUsers: 0,
       bannedUsers: 0,
+      totalPayouts: 0,
+      paidPayouts: 0,
     },
   },
 });
