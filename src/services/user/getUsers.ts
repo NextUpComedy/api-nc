@@ -5,7 +5,7 @@ import { IGetPaginatedUsersDTO } from '../../helpers/dto/services';
 const getPaginatedUsers: IGetPaginatedUsersDTO = ({ page, limit }) => {
   if (!page && !limit) {
     return User.findAll({
-      where: { userRoleId: userRoles.COMEDIAN },
+      where: { userRoleId: userRoles.AGENT },
       attributes: ['id', 'name', 'email', 'image'],
     });
   }
@@ -15,7 +15,7 @@ const getPaginatedUsers: IGetPaginatedUsersDTO = ({ page, limit }) => {
   return User.findAndCountAll({
     offset,
     limit,
-    where: { userRoleId: userRoles.COMEDIAN },
+    where: { userRoleId: userRoles.AGENT },
     attributes: ['id', 'name', 'email', 'image'],
     order: [['id', 'DESC']],
   });

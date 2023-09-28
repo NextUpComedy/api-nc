@@ -101,9 +101,9 @@ export const userRoles = {
   SYSTEM: 1,
   MASTER_ADMIN: 2,
   ADMIN: 3,
-  COMEDIAN: 4,
-  ACCOUNTANT: 5,
-  VENUE: 6,
+  AGENT: 4,
+  COMEDIAN: 5,
+  ACCOUNTANT: 6,
 };
 
 export const errorResponse = {

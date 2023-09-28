@@ -19,7 +19,7 @@ export default async (request: Request, response: Response, next: NextFunction):
     const user = await addUser({
       name,
       email,
-      userRoleId: userRoles.COMEDIAN,
+      userRoleId: userRoles.AGENT,
       password: hashedPassword,
       createdBy: userRoles.SYSTEM,
       updatedBy: userRoles.SYSTEM,

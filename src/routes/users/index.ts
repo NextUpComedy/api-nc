@@ -28,9 +28,9 @@ import { checkUserRole } from '../../middleware';
 
 const router = Router();
 
-const { ADMIN, MASTER_ADMIN, COMEDIAN } = constants.userRoles;
+const { ADMIN, MASTER_ADMIN, AGENT } = constants.userRoles;
 
-router.use(checkUserRole([COMEDIAN, ADMIN, MASTER_ADMIN]));
+router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN]));
 router.get('/current-watched-time/:contentId', getCurentWatchedTime);
 
 router.get('/statistics/:userId', validator.params(idSchema), getSpecificUserStatistics);

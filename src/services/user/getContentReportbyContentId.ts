@@ -10,7 +10,7 @@ const getContentReportByContentID = async (
       {
         model: Content,
         as: 'content',
-        attributes: ['title', 'runtime', 'publishDate', 'otherRevenue'],
+        attributes: ['title', 'runtime', 'publishDate', 'otherRevenue', 'userId'],
       },
     ],
 
