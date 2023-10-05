@@ -11,7 +11,6 @@ export default async (request: Request, response: Response, next: NextFunction):
     response
       .json({ data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

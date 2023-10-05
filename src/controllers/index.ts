@@ -24,6 +24,12 @@ export {
   getCurentWatchedTime,
   getContentReport,
   getPaymentDetails,
+  createUserUderAgent,
+  getComedianContents,
+  getNews,
+  getComedianList,
+  getComedianContentsReport,
+  uploadContent,
 } from './users';
 
 export {
@@ -49,6 +55,7 @@ export {
   deletePlan,
   setStripeAccount,
   setReport,
+  addNews,
 } from './admin';
 
 export {
@@ -57,4 +64,5 @@ export {
   matchUserContent,
   changeContentOwner,
   addOtherRevenue,
+  addComedianContent,
 } from './contents';

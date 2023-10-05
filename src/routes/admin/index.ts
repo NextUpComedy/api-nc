@@ -25,6 +25,7 @@ import {
   setStripeAccount,
   setReport,
   editContentData,
+  addNews,
 } from '../../controllers';
 import {
   constants,
@@ -43,6 +44,7 @@ import {
   setStripeAccountSchema,
   setReportSchema,
   editContentDataSchema,
+  addNewsSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
@@ -76,7 +78,7 @@ router.patch('/payouts/:payoutId/reject', validator.params(payoutIdSchema), vali
 
 router.put('/report', validator.body(setReportSchema), setReport);
 router.patch('/edit-content-data', validator.body(editContentDataSchema), editContentData);
-
+router.post('/add-news', validator.body(addNewsSchema), addNews);
 router.use(checkUserRole([MASTER_ADMIN]));
 router.get('/dashboard-settings', getDashboardSettings);
 router.patch('/edit-dashboard-settings', validator.body(editSystemSettingsSchema), editDashboardSettings);

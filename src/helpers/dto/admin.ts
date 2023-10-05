@@ -68,3 +68,18 @@ export const setReportDTO = (request: IUserRequest): ISetReport => ({
   createdBy: request?.user?.id as number,
   updatedBy: request?.user?.id as number,
 });
+
+export const addNewsDTO = ({ body }: Request):
+  { userId: number; title: string; newsContent: string; publishDate: string;
+     image: string; link: string; createdBy: number; updatedBy: number } => (
+  {
+    userId: body.userId,
+    title: body.title,
+    newsContent: body.newsContent,
+    publishDate: body.publishDate,
+    image: body.image,
+    link: body.link,
+    createdBy: body.createdBy,
+    updatedBy: body.updatedBy,
+  }
+);

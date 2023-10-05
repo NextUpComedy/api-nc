@@ -15,6 +15,11 @@ password: string
 oldPassword: string
 user: IUser
 }
+export interface IAddComedian {
+  name: string
+  email: string
+  currentUser?: IUser
+}
 
 export interface IEditProfile {
   id: number

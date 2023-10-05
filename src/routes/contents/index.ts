@@ -6,6 +6,8 @@ import {
   changeContentOwner,
   getMatchedContents,
   addOtherRevenue,
+  addComedianContent,
+  getComedianContents,
 } from '../../controllers';
 import {
   constants,
@@ -13,12 +15,21 @@ import {
   getPaginatedDataSchema,
   matchUserContentSchema,
   changeOwnerSchema,
+  addComedianContentSchema,
+  userContentsSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
 const router = Router();
 
-const { ADMIN, MASTER_ADMIN } = constants.userRoles;
+const {
+  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN,
+} = constants.userRoles;
+router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN, COMEDIAN]));
+router.get('/get-comedian-contents', validator.query(userContentsSchema), getComedianContents);
+
+router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN]));
+router.post('/add-comedian-content', validator.body(addComedianContentSchema), addComedianContent);
 
 router.use(checkUserRole([ADMIN, MASTER_ADMIN]));
 

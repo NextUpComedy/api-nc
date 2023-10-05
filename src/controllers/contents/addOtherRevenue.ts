@@ -27,7 +27,6 @@ export default async (request: Request, response: Response, next: NextFunction):
     if (content?.userId == null) {
       throw errorMessages.CONTENT_NOT_MATCHED_ERROR;
     }
-    console.log(contentReport?.otherRevenue);
 
     if (contentReport?.otherRevenue && Object.keys(contentReport.otherRevenue).length !== 0) {
       throw errorMessages.USER_HAS_OTHER_REVENUE;

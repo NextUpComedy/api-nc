@@ -1,7 +1,7 @@
 import {
   ContentReport, User, Content,
 } from 'nc-db-new';
-import { errorMessages } from '../../helpers';
+import Big from 'big.js';
 
 const addOtherRevenue = async (
   otherRevenue: JSON,
@@ -16,8 +16,11 @@ const addOtherRevenue = async (
     });
     const content = await Content.findOne({
       where: { id: contentId },
-      attributes: ['userId'],
+      attributes: ['id', 'userId', 'owedAccRevenue'],
     });
+    if (!content) {
+      throw new Error('Content not found or user does not have permission to change ownership.');
+    }
 
     const userId = content?.userId;
     let user;
@@ -46,6 +49,16 @@ const addOtherRevenue = async (
           totalRevenue += Number(servicesRevenue);
           user.totalRevenue = totalRevenue;
         }
+        const sR: Big = new Big(servicesRevenue);
+        content.owedAccRevenue = sR
+          .plus(content.owedAccRevenue)
+          .toString();
+
+        let owedRevenue = Number(contentReport.owedRevenue);
+        owedRevenue += Number(servicesRevenue);
+        contentReport.owedRevenue = String(owedRevenue);
+        await contentReport?.save();
+        await content?.save();
         await user?.save();
       } else {
         throw new Error('Other revenue is not an array');

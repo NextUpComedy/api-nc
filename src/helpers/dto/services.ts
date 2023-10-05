@@ -1,10 +1,12 @@
-import { IContent, IPayout, IUser } from 'nc-db-new';
+import {
+  IContent, IPayout, IUser, INews, IUserServices,
+} from 'nc-db-new';
 import {
   IGetPaginatedPayouts, IPayoutRequest, IUpdatePayoutRequestStatus, IUpdateUserPaidRevenue, IUserId,
 } from '../../interfaces/DtoUsers';
 import { IPagination, IMatchUserContent } from '../../interfaces/DtoContents';
 import {
-  ICustomContent, ICustomUser, IAddUser, ICustomContentReport,
+  ICustomContent, ICustomUser, IAddUser, ICustomContentReport, IAddNews, IUpoloadContent,
 } from '../../interfaces';
 
 type IGetPaginatedContentsDTO = (_: IPagination) => Promise<
@@ -16,6 +18,8 @@ type IGetContentReportDTO = (_: {
   limit: number;
   userId: number;
 }) => Promise<{ rows: ICustomContent[]; count: number }>;
+
+type IGetComedianListDTO =(_:IUserId)=>Promise<IUser|null>
 
 type IGetContentReportByIdDTO = (_: {
   contentId: number;
@@ -32,6 +36,9 @@ export type GetUserByEmailDTO = (email: string) => Promise<IUser | null>
 export type GetUserByIdDTO = (id: number) => Promise<IUser | null>
 
 export type AddUserDTO = (data: IAddUser) => Promise<IUser>
+
+export type AddNewsDto = (data: IAddNews) => Promise<INews>
+export type IUploadContentDTO = (data: IUpoloadContent) => Promise<IUserServices>
 
 export type GetUsersStatusDTO = (statusId: number, _: {
   page: number, limit: number
@@ -60,4 +67,5 @@ export {
   IGetPayoutByIdDTO,
   IUpdateUserPaidRevenueDTO,
   IGetContentReportByIdDTO,
+  IGetComedianListDTO,
 };

@@ -10,7 +10,9 @@ import {
   constants, validator, loginSchema, signupSchema, emailSchema, passwordSchema,
 } from '../../helpers';
 
-const { ADMIN, MASTER_ADMIN, AGENT } = constants.userRoles;
+const {
+  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN,
+} = constants.userRoles;
 
 const router = Router();
 
@@ -24,7 +26,7 @@ router.post('/forget-password', validator.body(emailSchema), forgetPassword);
 router.post('/reset-password', validator.body(passwordSchema), resetPassword);
 router.get('/reset-password/:token', resetPasswordEmail);
 
-router.use(checkUserRole([ADMIN, MASTER_ADMIN, AGENT]));
+router.use(checkUserRole([ADMIN, MASTER_ADMIN, AGENT, COMEDIAN]));
 
 router.get('/user', userAuth);
 router.get('/logout', logOut);

@@ -24,12 +24,19 @@ export {
   getCurentWatchedTime,
   getContentReportByContentID,
   getPaymentDetails,
+  addComedian,
+  getPaginatedComedianContents,
+  getNews,
+  getComedianList,
+  getContentReportByLinkedAgent,
+  uploadContentByComedian,
 } from './user';
 
 export {
   getUnmatchedContent,
   getMatchedContent,
   addOtherRevenue,
+  addComedianContent,
 } from './contents';
 
 export {
@@ -39,4 +46,5 @@ export {
   updateUserPaidRevenue,
   editContentData,
   sendInvoice,
+  addNews,
 } from './admin';

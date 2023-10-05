@@ -22,3 +22,7 @@ export { default as setStripeAccountSchema } from './setStripeAccountSchema';
 export { default as setReportSchema } from './setReportSchema';
 export { default as changeOwnerSchema } from './changeOwnerSchema';
 export { default as editContentDataSchema } from './editContentDataSchema';
+export { default as createComedianSchema } from './createComedianSchema';
+export { default as addComedianContentSchema } from './addComedianContentSchema';
+export { default as addNewsSchema } from './addNewsSchema';
+export { default as uploadContentSchema } from './uploadContentSchema';

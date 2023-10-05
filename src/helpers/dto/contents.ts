@@ -10,3 +10,11 @@ export const matchUserContentDTO = ({ body }: Request): IMatchUserContent => (
     recoveredCosts: body.recoveredCosts.toString(),
   }
 );
+
+export const addComedianContentDTO = ({ body }: Request):
+ { contentIds: number[]; userId: number } => (
+  {
+    contentIds: body.contentIds,
+    userId: body.userId,
+  }
+);

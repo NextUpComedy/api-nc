@@ -35,6 +35,10 @@ export {
   setReportSchema,
   changeOwnerSchema,
   editContentDataSchema,
+  createComedianSchema,
+  addComedianContentSchema,
+  addNewsSchema,
+  uploadContentSchema,
 } from './validation';
 
 export { forgetPasswordDTO } from './dto/auth';

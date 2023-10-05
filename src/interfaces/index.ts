@@ -159,6 +159,26 @@ interface IAddUser{
     totalRevenue: number;
     paidRevenue: number;
 }
+interface IAddNews{
+  userId: number;
+  userName: string;
+  title: string;
+  newsContent: string;
+  publishDate: string;
+  image: string;
+  link: string;
+  createdBy: number;
+  updatedBy: number;
+}
+
+interface IUpoloadContent{
+  userId: number;
+  type: string;
+  link: string;
+  text: string;
+  createdBy: number;
+  updatedBy: number;
+}
 
 interface IGoogleAuthentication{
   googleId: string,
@@ -192,4 +212,6 @@ export {
   IAddUser,
   IStatistics,
   IReports,
+  IAddNews,
+  IUpoloadContent,
 };

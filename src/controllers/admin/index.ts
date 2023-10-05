@@ -23,3 +23,4 @@ export { default as deletePlan } from './deletePlan';
 export { default as setStripeAccount } from './setStripeAccount';
 export { default as setReport } from './setReport';
 export { default as editContentData } from './editContentData';
+export { default as addNews } from './addNews';
