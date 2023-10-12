@@ -6,7 +6,7 @@ const addNewsSchema = joi.object({
   title: joi.string().required(),
   newsContent: joi.string().required(),
   image: joi.string().required(),
-  link: joi.string().required(),
+  link: joi.string(),
 });
 
 export default addNewsSchema;

@@ -65,4 +65,5 @@ export {
   changeContentOwner,
   addOtherRevenue,
   addComedianContent,
+  addContent,
 } from './contents';

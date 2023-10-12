@@ -8,6 +8,7 @@ const addComedian: AddUserDTO = async (data: IAddUser) => {
     await comedian.update({ linkedAgentId: data.createdBy });
     return comedian;
   } catch (error) {
+    console.log(error);
     throw new Error('Failed to add comedian:');
   }
 };

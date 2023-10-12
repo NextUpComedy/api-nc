@@ -91,6 +91,32 @@ interface IContents {
   otherRevenue?: object;
 }
 
+interface IAddContent {
+  id: number;
+  userId: number;
+  runtime: number;
+  title: string;
+  publishDate: number;
+  permalink: string;
+  nextUpAccRevenue: string;
+  owedAccRevenue: string;
+  primaryCategory: string;
+  createdBy: number;
+  updatedBy: number;
+  otherRevenue?: JSON;
+  recoveredCosts: string;
+}
+interface IAddContentReport {
+  contentId: number;
+  watchedSeconds: number;
+  revenue: string;
+  owedRevenue: string;
+  reportId: number;
+  createdBy: number;
+  updatedBy: number;
+  paid: boolean;
+  prevWatchedSeconds: number;
+}
 interface IUsers {
   id: number;
   name: string;
@@ -214,4 +240,6 @@ export {
   IReports,
   IAddNews,
   IUpoloadContent,
+  IAddContent,
+  IAddContentReport,
 };

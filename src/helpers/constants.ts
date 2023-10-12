@@ -71,6 +71,7 @@ export const messages = {
     WRONG_REPORT_DURATION: "Report end date shouldn't be the same as report start",
     ADD_STRIPE_ACCOUNT_ERROR: 'ADD STRIPE ACCOUNT ERROR',
     USER_HAS_OTHER_REVENUE: 'USER HAS OTHER REVENUE',
+    CONTENT_ADD_SUCCESS: 'CONTENT ADDED SUCCESSFULLY',
 
   },
   stripe: {

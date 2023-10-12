@@ -37,6 +37,8 @@ export {
   getMatchedContent,
   addOtherRevenue,
   addComedianContent,
+  addContent,
+  addContentReport,
 } from './contents';
 
 export {

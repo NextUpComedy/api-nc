@@ -53,6 +53,7 @@ const router = Router();
 const { ADMIN, MASTER_ADMIN } = constants.userRoles;
 
 router.use(checkUserRole([ADMIN, MASTER_ADMIN]));
+router.post('/add-news', validator.body(addNewsSchema), addNews);
 
 router.get('/approved-list', validator.query(getPaginatedDataSchema), approvedUser);
 router.get('/rejected-list', validator.query(getPaginatedDataSchema), rejectedUsers);
@@ -78,7 +79,6 @@ router.patch('/payouts/:payoutId/reject', validator.params(payoutIdSchema), vali
 
 router.put('/report', validator.body(setReportSchema), setReport);
 router.patch('/edit-content-data', validator.body(editContentDataSchema), editContentData);
-router.post('/add-news', validator.body(addNewsSchema), addNews);
 router.use(checkUserRole([MASTER_ADMIN]));
 router.get('/dashboard-settings', getDashboardSettings);
 router.patch('/edit-dashboard-settings', validator.body(editSystemSettingsSchema), editDashboardSettings);

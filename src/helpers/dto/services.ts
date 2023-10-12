@@ -1,12 +1,13 @@
 import {
-  IContent, IPayout, IUser, INews, IUserServices,
+  IContent, IPayout, IUser, INews, IUserServices, IContentReport,
 } from 'nc-db-new';
 import {
   IGetPaginatedPayouts, IPayoutRequest, IUpdatePayoutRequestStatus, IUpdateUserPaidRevenue, IUserId,
 } from '../../interfaces/DtoUsers';
 import { IPagination, IMatchUserContent } from '../../interfaces/DtoContents';
 import {
-  ICustomContent, ICustomUser, IAddUser, ICustomContentReport, IAddNews, IUpoloadContent,
+  ICustomContent, ICustomUser, IAddUser, ICustomContentReport,
+  IAddNews, IUpoloadContent, IAddContent, IAddContentReport,
 } from '../../interfaces';
 
 type IGetPaginatedContentsDTO = (_: IPagination) => Promise<
@@ -36,6 +37,10 @@ export type GetUserByEmailDTO = (email: string) => Promise<IUser | null>
 export type GetUserByIdDTO = (id: number) => Promise<IUser | null>
 
 export type AddUserDTO = (data: IAddUser) => Promise<IUser>
+
+export type AddContentDTO = (data: IAddContent) => Promise<IContent>
+
+export type AddContentReportDTO = (data: IAddContentReport) => Promise<IContentReport>
 
 export type AddNewsDto = (data: IAddNews) => Promise<INews>
 export type IUploadContentDTO = (data: IUpoloadContent) => Promise<IUserServices>
