@@ -1,6 +1,7 @@
 import sgMail from '@sendgrid/mail';
 import { AES, enc } from 'crypto-js';
 import { Payout } from 'nc-db-new';
+import fs from 'fs';
 import { generateInvoice } from '../../helpers';
 import { getNumberOfContent, getUserById } from '../user';
 import config from '../../config';
@@ -14,7 +15,12 @@ const decryptData = (encryptedData: string): string => {
   return decryptedText;
 };
 
-export default async function sendInvoice(userId: number, payoutId:number): Promise<void> {
+export default async function sendInvoice(
+  userId: number,
+  payoutId:number,
+  content:any,
+  contentReports:any,
+): Promise<void> {
   const user = await getUserById(userId);
   const isVatPayer = user?.vatPayer;
   let vatPercentage = 0;
@@ -23,16 +29,21 @@ export default async function sendInvoice(userId: number, payoutId:number): Prom
   } else if (isVatPayer === true) {
     vatPercentage = 20;
   }
-  const content = await getNumberOfContent({
-    page: 1,
-    limit: 40,
-    userId: Number(user?.id),
+
+  const matchContentWithReports = content.map((item: any) => {
+    const report = contentReports.find((reportItem: any) => reportItem.contentId === item.id);
+    return {
+      ...item,
+      ...report,
+    };
   });
+  console.log(matchContentWithReports[0].report);
+
   let msg: any = {};
   let accmsg: any = {};
   const sums:any = [];
-  if (content.rows.every((row) => JSON.stringify(row?.otherRevenue ?? {}) === '{}' || JSON.stringify(row?.otherRevenue ?? []) === '[]')) {
-    const products = content.rows.map((item) => ({
+  if (content.rows.every((row:any) => JSON.stringify(row?.otherRevenue ?? {}) === '{}' || JSON.stringify(row?.otherRevenue ?? []) === '[]')) {
+    const products = content.rows.map((item:any) => ({
       quantity: 1,
       description: item.title,
       tax: vatPercentage,
@@ -46,7 +57,6 @@ export default async function sendInvoice(userId: number, payoutId:number): Prom
       products,
     });
     const recipients = [user?.email];
-
     msg = {
       to: recipients.filter((recipient) => recipient) as any,
       from: process.env.SENDGRID_ADMIN_EMAIL as string,
@@ -86,13 +96,13 @@ export default async function sendInvoice(userId: number, payoutId:number): Prom
       ],
     };
   } else {
-    const listOfOtherRevenueAndTitle = content.rows.map((item) => ({
+    const listOfOtherRevenueAndTitle = content.rows.map((item:any) => ({
       otherRevenue: item.otherRevenue,
       title: item.title,
     }));
     let sum = 0;
     const listOfOtherRevenueAsProducts = listOfOtherRevenueAndTitle.map(
-      (item) => {
+      (item:any) => {
         const otherRevenueString = JSON.stringify(item.otherRevenue);
         const otherRevenueObj = JSON.parse(otherRevenueString);
 
@@ -113,12 +123,12 @@ export default async function sendInvoice(userId: number, payoutId:number): Prom
     );
 
     const products = content.rows
-      .filter((item) => Number(item.owedAccRevenue) !== Number(sum))
-      .map((item, index) => ({
+      .filter((item:any) => Number(item.owedAccRevenue) !== Number(sum))
+      .map((item:any) => ({
         quantity: 1,
         description: `${item.title} - Subscription Revenue Share`,
         tax: vatPercentage,
-        price: Number(item.owedAccRevenue) - Number(sums[index]),
+        price: Number(item.owedAccRevenue),
       }));
 
     const generateInvoiceResult = await generateInvoice({

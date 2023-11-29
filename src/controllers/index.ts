@@ -30,6 +30,7 @@ export {
   getComedianList,
   getComedianContentsReport,
   uploadContent,
+  getServices,
 } from './users';
 
 export {
@@ -56,6 +57,8 @@ export {
   setStripeAccount,
   setReport,
   addNews,
+  editNews,
+  deleteNews,
 } from './admin';
 
 export {

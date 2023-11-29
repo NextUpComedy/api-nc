@@ -17,3 +17,4 @@ export { default as getNews } from './getNews';
 export { default as getComedianList } from './getComedianList';
 export { default as getComedianContentsReport } from './getComedianContentsReport';
 export { default as uploadContent } from './uploadContent';
+export { default as getServices } from './getServices';

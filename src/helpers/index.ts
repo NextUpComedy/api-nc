@@ -39,6 +39,8 @@ export {
   addComedianContentSchema,
   addNewsSchema,
   uploadContentSchema,
+  editNewsSchema,
+  newsIdSchema,
 } from './validation';
 
 export { forgetPasswordDTO } from './dto/auth';

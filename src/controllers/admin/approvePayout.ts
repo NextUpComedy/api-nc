@@ -33,29 +33,25 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
     } = dto.generalDTO.payoutDTO(payoutRequest);
 
     if (!preferredPayoutMethod) throw errorMessages.NO_USER_STRIPE_ACCOUNT;
-    sendInvoice(userId, payoutId);
-    // find all content reports for this payout request which has paid colum as false
     const contentItems = await Content.findAll({
       where: {
-        userId, // Replace with the actual userId you want to filter by
+        userId,
       },
     });
 
-    const updatePromises = contentItems.map(async (contentItem) => {
-      // Update the ContentReport rows where paid is false for each content item
-      await ContentReport.update(
-        { paid: true },
-        {
-          where: {
-            contentId: contentItem.id,
-            paid: false,
-            // Add any additional conditions if needed
-          },
-        },
-      );
+    const contentReports = await ContentReport.findAll({
+      where: {
+        contentId: contentItems.map((item) => item.id),
+        paid: false,
+      },
     });
 
-    // Wait for all the updates to complete
+    sendInvoice(userId, payoutId, contentItems, contentReports);
+
+    const updatePromises = contentReports.map((item) => item.update({
+      paid: true,
+    }));
+
     await Promise.all(updatePromises);
 
     await updatePayoutStatus({

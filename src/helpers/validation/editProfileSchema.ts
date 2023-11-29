@@ -7,4 +7,5 @@ export default Joi.object({
   image: stringValidation,
   videoNotification: booleanValidation,
   paymentNotification: booleanValidation,
+  password: stringValidation,
 });

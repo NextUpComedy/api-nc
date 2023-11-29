@@ -28,3 +28,4 @@ export { default as addComedian } from './addComedian';
 export { default as getComedianList } from './getComedianList';
 export { default as getContentReportByLinkedAgent } from './getContentReportByLinkedAgent';
 export { default as uploadContentByComedian } from './uploadContent';
+export { default as getServices } from './getServices';

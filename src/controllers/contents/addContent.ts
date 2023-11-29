@@ -9,8 +9,13 @@ const addContentController = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  const contentTitle: IAddContent = req.body;
-  const contentId = 2000000 + Math.floor(Math.random() * 1000000);
+  const content: IAddContent = req.body;
+  const { title, id } = content;
+  let contentId = id;
+  if (id === undefined || id === null) {
+    contentId = 2000000 + Math.floor(Math.random() * 1000000);
+  }
+
   const { messages } = constants;
 
   try {
@@ -33,7 +38,7 @@ const addContentController = async (
     attributes: ['id'],
   });
   const contentData = {
-    ...contentTitle,
+    ...content,
     id: contentId,
     runtime: 1,
     createdBy: req.user?.id || 3,

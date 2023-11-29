@@ -19,6 +19,7 @@ export const resetPasswordDTO = (request: IUserRequest): IResetPassword => ({
 export const editProfileDTO = (request: IUserRequest): IEditProfile => ({
   ...request.body,
   user: request.user,
+  password: request.body.password,
 });
 
 export const getPayoutsByUserIdDTO = (

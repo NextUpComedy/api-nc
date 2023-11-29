@@ -26,6 +26,9 @@ import {
   setReport,
   editContentData,
   addNews,
+  getServices,
+  editNews,
+  deleteNews,
 } from '../../controllers';
 import {
   constants,
@@ -45,6 +48,8 @@ import {
   setReportSchema,
   editContentDataSchema,
   addNewsSchema,
+  editNewsSchema,
+  newsIdSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
@@ -54,6 +59,8 @@ const { ADMIN, MASTER_ADMIN } = constants.userRoles;
 
 router.use(checkUserRole([ADMIN, MASTER_ADMIN]));
 router.post('/add-news', validator.body(addNewsSchema), addNews);
+router.patch('/edit-news', validator.body(editNewsSchema), editNews);
+router.delete('/newslist/:newsId', validator.params(newsIdSchema), deleteNews);
 
 router.get('/approved-list', validator.query(getPaginatedDataSchema), approvedUser);
 router.get('/rejected-list', validator.query(getPaginatedDataSchema), rejectedUsers);
@@ -86,5 +93,6 @@ router.patch('/block-user/:userId', validator.params(idSchema), blockUser);
 router.get('/plans', getPlans);
 router.put('/plans', validator.body(putPlanSchema), putPlans);
 router.delete('/plans/:planId', validator.params(planIdSchema), deletePlan);
+router.get('/get-services', getServices);
 
 export default router;

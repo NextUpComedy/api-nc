@@ -28,6 +28,7 @@ export interface IEditProfile {
   videoNotification: boolean
   paymentNotification: boolean
   user: IUser
+  password: string
 }
 
 export type ISortOptions='ASC'|'DESC';

@@ -24,3 +24,5 @@ export { default as setStripeAccount } from './setStripeAccount';
 export { default as setReport } from './setReport';
 export { default as editContentData } from './editContentData';
 export { default as addNews } from './addNews';
+export { default as editNews } from './editNews';
+export { default as deleteNews } from './deleteNews';

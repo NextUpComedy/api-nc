@@ -1,4 +1,5 @@
 import { NextFunction, Response } from 'express';
+import { compare, hash } from 'bcrypt';
 import {
   constants, errorMessages, upload, dto,
 } from '../../helpers';
@@ -7,9 +8,12 @@ import { IUserRequest } from '../../interfaces';
 
 export default async (request: IUserRequest, response: Response, next: NextFunction)
 :Promise<void> => {
-  const { httpStatus, userRoles, messages } = constants;
   const {
-    id, image, name, user,
+    httpStatus, userRoles, messages, SALT_ROUNDS,
+  } = constants;
+
+  const {
+    id, image, name, user, password,
   } = dto.usersDTO.editProfileDTO(request);
 
   try {
@@ -23,6 +27,13 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
 
     if (name) { currentUser.name = name; }
 
+    if (password) {
+      const hashedPassword = await hash(password, SALT_ROUNDS);
+
+      currentUser.password = hashedPassword;
+      await user.save();
+    }
+
     currentUser.updatedBy = user.id || userRoles.SYSTEM;
     await currentUser.save();
 
@@ -30,6 +41,8 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
       .status(httpStatus.OK)
       .json({ message: messages.authResponse.SUCCESS_EDIT });
   } catch (error) {
+    console.log(error);
+
     next(error);
   }
 };

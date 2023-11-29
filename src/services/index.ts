@@ -30,6 +30,7 @@ export {
   getComedianList,
   getContentReportByLinkedAgent,
   uploadContentByComedian,
+  getServices,
 } from './user';
 
 export {
@@ -49,4 +50,6 @@ export {
   editContentData,
   sendInvoice,
   addNews,
+  editNews,
+  deleteNews,
 } from './admin';

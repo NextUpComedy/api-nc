@@ -14,7 +14,7 @@ const addComedianContent: IAddComedianContent = async ({
       where: {
         id: contentIds,
       },
-      attributes: ['id', 'watchedSeconds', 'reportId', 'paid'],
+      attributes: ['id'],
     });
 
     // Find all the contentReports that have the given contentIds
@@ -41,6 +41,8 @@ const addComedianContent: IAddComedianContent = async ({
     ]);
   } catch (error) {
     // Handle errors (e.g., log, throw a custom error, etc.)
+    console.log(error);
+
     throw new Error('Error adding comedian content');
   }
 };
