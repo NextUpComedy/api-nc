@@ -25,13 +25,23 @@ export {
   getContentReport,
   getPaymentDetails,
   createUserUderAgent,
-  getComedianContents,
   getNews,
   getComedianList,
-  getComedianContentsReport,
   uploadContent,
   getServices,
 } from './users';
+
+export {
+  getComedianContents,
+  getComedianContentsReport,
+} from './comedian';
+
+export {
+  getAccountantContent,
+  accountantPayout,
+  getAccountantPayouts,
+  cancelAccountantPayout,
+} from './accountant';
 
 export {
   createUser,

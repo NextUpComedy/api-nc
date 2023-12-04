@@ -18,6 +18,7 @@ export default async (request: Request, response: Response, next: NextFunction)
   const {
     amount, createdBy, payoutStatusId, updatedBy, userId,
   } = dto.usersDTO.askForPayoutDTO(request);
+
   try {
     if (amount.lt(1)) throw errorMessages.NO_BALANCE;
     const userPayoutRequests = await askForPayout({

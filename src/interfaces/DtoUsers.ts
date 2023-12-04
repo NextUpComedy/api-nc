@@ -19,6 +19,7 @@ export interface IAddComedian {
   name: string
   email: string
   currentUser?: IUser
+  type: number
 }
 
 export interface IEditProfile {
@@ -39,7 +40,20 @@ export interface IGetPaginatedPayouts {
     payoutStatusId?:number;
     userId?:number;
 }
+export interface IGetPaginatedAccountantPayout {
+  page:number;
+  limit?:number;
+  sort?:ISortOptions
+  payoutStatusId?:number;
+  userId?:number;
+  linkedAgentId?:number;
+}
 
+export interface IAccountantContentsPayload {
+  linkedAgentId: number;
+  page: number;
+  limit: number;
+}
 export interface IPayoutRequest {
   amount:Big,
   userId:number
@@ -47,6 +61,13 @@ export interface IPayoutRequest {
   updatedBy:number;
   payoutStatusId:number;
   }
+export interface IAccountantPayoutRequest {
+    userId:number
+    createdBy:number,
+    updatedBy:number;
+    payoutStatusId:number;
+    linkedAgentId:number;
+    }
 
 export interface IUpdatePayoutRequestStatus{
     payoutRequest:IPayout;

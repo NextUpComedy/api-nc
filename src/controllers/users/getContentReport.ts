@@ -8,8 +8,6 @@ export default async (request: Request, response: Response, next: NextFunction)
     const reports = await getContentReportByContentID(parseFloat(contentId));
     response.status(200).json(reports);
   } catch (error) {
-    console.log(error);
-
     next(error);
   }
 };

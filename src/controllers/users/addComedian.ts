@@ -14,7 +14,7 @@ export default async (
   next: NextFunction,
 ): Promise<void> => {
   const {
-    name, email, currentUser,
+    name, email, currentUser, type,
   } = dto.usersDTO.addComedianDTO(request);
 
   const {
@@ -36,11 +36,17 @@ export default async (
       length: PASSWORD_LENGTH, numbers: true, strict: true, lowercase: true, uppercase: true,
     });
     const hashedPassword = await hash(password, SALT_ROUNDS);
+    let roleId;
+    if (type === userRoles.COMEDIAN) {
+      roleId = userRoles.COMEDIAN;
+    } else if (type === userRoles.ACCOUNTANT) {
+      roleId = userRoles.ACCOUNTANT;
+    }
 
     const user = await addComedian({
       name,
       email: email.toLowerCase(),
-      userRoleId: userRoles.COMEDIAN,
+      userRoleId: roleId as number,
       password: hashedPassword,
       createdBy: currentUser.id,
       updatedBy: currentUser.id,

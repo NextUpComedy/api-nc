@@ -1,12 +1,9 @@
 import { Content, ContentReport, IContent } from 'nc-db-new';
 import { Op } from 'sequelize';
 import fs from 'fs';
+import { IGetPaginatedUserContentsDTO } from '../../helpers/dto/services';
 
-type IGetPaginatedUserContents = (
-  { userId, page, limit }: { userId: number; page: number; limit: number }
-) => Promise<{ rows: IContent[]; count: number }>;
-
-const getPaginatedComedianContents: IGetPaginatedUserContents = async ({
+const getPaginatedComedianContents: IGetPaginatedUserContentsDTO = async ({
   userId,
   page,
   limit,
@@ -32,7 +29,6 @@ const getPaginatedComedianContents: IGetPaginatedUserContents = async ({
         },
       ],
     });
-    fs.writeFileSync('userContents.json', JSON.stringify(userContents));
 
     return userContents;
   } catch (error) {

@@ -60,6 +60,7 @@ export const messages = {
   data: {
     SUCCESS: 'SUCCESS PROCESS',
   },
+
   responses: {
     NO_STRIPE_ACCOUNT: 'User has no stripe account yet',
     SUCCESS_PAYOUT_APPROVAL: 'Payout approved successfully',
@@ -73,6 +74,10 @@ export const messages = {
     ADD_STRIPE_ACCOUNT_ERROR: 'ADD STRIPE ACCOUNT ERROR',
     USER_HAS_OTHER_REVENUE: 'USER HAS OTHER REVENUE',
     CONTENT_ADD_SUCCESS: 'CONTENT ADDED SUCCESSFULLY',
+    ACCOUNTANT_LINKED_AGENT_NOT_FOUND: 'ACCOUNTANT LINKED AGENT NOT FOUND',
+    PENDING_PAYOUT_REQUEST: 'There is already an existing payout request for this agent',
+    NO_AGENT_BALANCE: 'No enough balance to ask a payout',
+    NO_AGENT: 'Agent not found',
 
   },
   stripe: {

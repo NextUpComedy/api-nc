@@ -3,7 +3,7 @@ import { userContentsDTO } from '../../helpers/dto/admin';
 import { IUserRequest } from '../../interfaces';
 import { getPaginatedComedianContents } from '../../services';
 import {
-  constants, dto,
+  constants,
 } from '../../helpers';
 
 export default async (

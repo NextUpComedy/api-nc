@@ -11,7 +11,7 @@ import {
 } from '../../helpers';
 
 const {
-  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN,
+  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN, ACCOUNTANT,
 } = constants.userRoles;
 
 const router = Router();
@@ -26,7 +26,7 @@ router.post('/forget-password', validator.body(emailSchema), forgetPassword);
 router.post('/reset-password', validator.body(passwordSchema), resetPassword);
 router.get('/reset-password/:token', resetPasswordEmail);
 
-router.use(checkUserRole([ADMIN, MASTER_ADMIN, AGENT, COMEDIAN]));
+router.use(checkUserRole([ADMIN, MASTER_ADMIN, AGENT, COMEDIAN, ACCOUNTANT]));
 
 router.get('/user', userAuth);
 router.get('/logout', logOut);

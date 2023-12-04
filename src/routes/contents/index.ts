@@ -9,6 +9,7 @@ import {
   addComedianContent,
   getComedianContents,
   addContent,
+  uploadContent,
 } from '../../controllers';
 import {
   constants,
@@ -18,6 +19,7 @@ import {
   changeOwnerSchema,
   addComedianContentSchema,
   userContentsSchema,
+  uploadContentSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
@@ -28,6 +30,7 @@ const {
 } = constants.userRoles;
 router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN, COMEDIAN]));
 router.get('/get-comedian-contents', validator.query(userContentsSchema), getComedianContents);
+router.post('/upload-content', validator.body(uploadContentSchema), uploadContent);
 
 router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN]));
 router.post('/add-comedian-content', validator.body(addComedianContentSchema), addComedianContent);

@@ -17,7 +17,6 @@ import {
   createUserUderAgent,
   getNews,
   getComedianList,
-  uploadContent,
 } from '../../controllers';
 import {
   constants,
@@ -28,18 +27,16 @@ import {
   idSchema,
   userContentsSchema,
   createComedianSchema,
-  uploadContentSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
 const router = Router();
 
 const {
-  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN,
+  ADMIN, MASTER_ADMIN, AGENT, COMEDIAN, ACCOUNTANT,
 } = constants.userRoles;
-router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN, COMEDIAN]));
+router.use(checkUserRole([AGENT, ADMIN, MASTER_ADMIN, COMEDIAN, ACCOUNTANT]));
 
-router.post('/upload-content', validator.body(uploadContentSchema), uploadContent);
 router.get('/get-news', getNews);
 router.patch('/change-password', validator.body(changePasswordSchema), changePassword);
 router.patch('/edit-profile', validator.body(editProfileSchema), editProfile);

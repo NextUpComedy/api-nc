@@ -53,3 +53,10 @@ export {
   editNews,
   deleteNews,
 } from './admin';
+
+export {
+  updateAccountantPayoutRequestStatus,
+  getAccountantContents,
+  accountantPayout,
+  getAccountantPayouts,
+} from './accountant';

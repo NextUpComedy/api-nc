@@ -7,6 +7,8 @@ import {
   IPayoutRequest,
   ISortOptions,
   IAddComedian,
+  IAccountantPayoutRequest,
+  IAccountantContentsPayload,
 } from '../../interfaces/DtoUsers';
 import { IUserRequest, IPayoutStatuses, IUser } from '../../interfaces';
 import { constants } from '..';
@@ -44,12 +46,20 @@ export const askForPayoutDTO = (request: IUserRequest): IPayoutRequest => ({
   updatedBy: request?.user?.id as number,
   payoutStatusId: constants.payoutStatuesIds.PENDING,
 });
+export const askForAccountantPayoutDTO = (request: IUserRequest): IAccountantPayoutRequest => ({
+  userId: request?.user?.id as number,
+  linkedAgentId: request.user?.linkedAgentId as number,
+  createdBy: request?.user?.id as number,
+  updatedBy: request?.user?.id as number,
+  payoutStatusId: constants.payoutStatuesIds.PENDING,
+});
 export const addComedianDTO = (
   request: IUserRequest,
 ): IAddComedian => ({
   name: request.body.name,
   email: request.body.email.toLowerCase(),
   currentUser: request.user,
+  type: request.body.type,
 });
 export const getCurentWatchedTimeDTO = (request: Request): any => request.body;
 export const UploadContentDTO = ({ body }: Request):
@@ -64,3 +74,8 @@ export const UploadContentDTO = ({ body }: Request):
     updatedBy: body.updatedBy,
   }
 );
+export const accounantContentsDTO = (request: IUserRequest): IAccountantContentsPayload => ({
+  page: Number(request.query.page || 1),
+  limit: Number(request.query.limit || 10),
+  linkedAgentId: request.user?.linkedAgentId as number,
+});

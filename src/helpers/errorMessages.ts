@@ -105,3 +105,23 @@ export const CONTENT_NOT_MATCHED_ERROR = new CustomError(
   messages.authResponse.CONTENT_NOT_MATCHED_ERROR,
   httpStatus.BAD_REQUEST,
 );
+
+export const ACCOUNTANT_LINKED_AGENT_NOT_FOUND = new CustomError(
+  messages.responses.ACCOUNTANT_LINKED_AGENT_NOT_FOUND,
+  httpStatus.BAD_REQUEST,
+);
+
+export const PENDING_PAYOUT_REQUEST = new CustomError(
+  messages.responses.PENDING_PAYOUT_REQUEST,
+  httpStatus.BAD_REQUEST,
+);
+
+export const NO_AGENT_BALANCE = new CustomError(
+  messages.responses.NO_AGENT_BALANCE,
+  httpStatus.BAD_REQUEST,
+);
+
+export const NO_AGENT = new CustomError(
+  messages.responses.NO_AGENT,
+  httpStatus.BAD_REQUEST,
+);
