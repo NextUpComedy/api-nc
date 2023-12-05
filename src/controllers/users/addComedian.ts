@@ -54,10 +54,15 @@ export default async (
       totalRevenue: REVENUE_DEFAULT_VALUE,
       paidRevenue: REVENUE_DEFAULT_VALUE,
     });
-
+    let emailTemplate = emailType.CREATE_COMEDIAN;
+    if (type === userRoles.COMEDIAN) {
+      emailTemplate = emailType.CREATE_COMEDIAN;
+    } else if (type === userRoles.ACCOUNTANT) {
+      emailTemplate = emailType.CREATE_ACCOUNTANT;
+    }
     await sendEmail({
       email: user.email,
-      type: emailType.CREATE,
+      type: emailTemplate,
       name: user.name,
       password,
     });
@@ -66,7 +71,6 @@ export default async (
       .status(httpStatus.CREATED)
       .json({ message: messages.authResponse.SUCCESS_ADD_USER, data: user });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

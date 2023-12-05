@@ -28,6 +28,8 @@ export default async ({
       reject: config.email.SENDGRID_REJECTION_TEMPLATE_ID,
       reset: config.email.SENDGRID_RESET_PASSWORD_TEMPLATE_ID,
       create: config.email.SENDGRID_CREATE_USER_TEMPLATE_ID,
+      createAccountant: config.email.SENDGRID_CREATE_ACCOUNTANT_TEMPLATE_ID,
+      CreateComedian: config.email.SENDGRID_CREATE_COMEDIAN_TEMPLATE_ID,
     };
 
     const message: MailJSON = {

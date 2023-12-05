@@ -146,6 +146,8 @@ export const emailType = {
   RESET: 'reset',
   APPROVE: 'approve',
   REJECT: 'reject',
+  CREATE_ACCOUNTANT: 'createAccountant',
+  CREATE_COMEDIAN: 'createComedian',
 };
 
 export const redirectURLs = {
