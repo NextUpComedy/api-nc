@@ -52,6 +52,7 @@ export default async (
       swiftCode,
       bicCode,
       sortCode,
+      vatPayer,
     } = user;
 
     const token = await signToken(
@@ -117,6 +118,7 @@ export default async (
           swiftCode: data.swiftCode,
           bicCode: data.bicCode,
           sortCode: data.sortCode,
+          vatPayer,
         },
       });
   } catch (error) {

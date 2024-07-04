@@ -46,7 +46,7 @@ export default async (request: IUserRequest, response: Response, next: NextFunct
       },
     });
 
-    sendInvoice(userId, payoutId, contentItems, contentReports);
+    // sendInvoice(userId, payoutId, contentItems, contentReports);
 
     const updatePromises = contentReports.map((item) => item.update({
       paid: true,

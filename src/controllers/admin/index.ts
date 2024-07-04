@@ -26,3 +26,5 @@ export { default as editContentData } from './editContentData';
 export { default as addNews } from './addNews';
 export { default as editNews } from './editNews';
 export { default as deleteNews } from './deleteNews';
+export { default as changeVatStatus } from './changeVatStatus';
+export { default as getVatStatus } from './getVatStatus';

@@ -34,6 +34,7 @@ Promise<void> => {
       swiftCode,
       bicCode,
       sortCode,
+      vatPayer,
     } = user;
 
     const data: Record<string, any> = {
@@ -43,6 +44,7 @@ Promise<void> => {
       name,
       image,
       preferredPayoutMethod,
+      vatPayer,
     };
 
     // Check if each field is not null, and if not, add the decrypted value to the data object

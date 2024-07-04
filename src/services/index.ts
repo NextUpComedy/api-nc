@@ -31,6 +31,7 @@ export {
   getContentReportByLinkedAgent,
   uploadContentByComedian,
   getServices,
+  changeUserContentVatStatus,
 } from './user';
 
 export {
@@ -52,6 +53,8 @@ export {
   addNews,
   editNews,
   deleteNews,
+  changeVatStatus,
+  getVatStatus,
 } from './admin';
 
 export {

@@ -7,6 +7,7 @@ import {
 import Big from 'big.js';
 
 import { errorMessages } from '../../helpers';
+import { getUserById } from './user';
 
 type IMatchUserContent = (userData: {
   id: string;
@@ -33,6 +34,9 @@ const matchUserContent: IMatchUserContent = async ({
   expiredAfterInYears,
   notes,
 }) => {
+  const userData = await getUserById(userId);
+  const userVat = userData?.vatPayer;
+
   const [content, user] = await Promise.all([
     Content.findOne({
       where: { id },
@@ -62,6 +66,7 @@ const matchUserContent: IMatchUserContent = async ({
   content.feePaid = feePaid;
   content.recoveredCosts = recoveredCosts;
   content.notes = notes;
+  content.vat = userVat ? 'true' : 'false';
 
   const cReports = content?.contentReports?.map(
     ({

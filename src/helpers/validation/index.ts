@@ -28,3 +28,4 @@ export { default as addNewsSchema } from './addNewsSchema';
 export { default as uploadContentSchema } from './uploadContentSchema';
 export { default as editNewsSchema } from './editNewsSchema';
 export { default as newsIdSchema } from './newsIdSchema';
+export { default as changeVatStatusSchema } from './changeVatStatusSchema';

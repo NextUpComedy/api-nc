@@ -17,6 +17,7 @@ import {
   createUserUderAgent,
   getNews,
   getComedianList,
+  changeUserContentVatStatus,
 } from '../../controllers';
 import {
   constants,
@@ -54,6 +55,7 @@ router.get('/get-content-reports/:contentId', getContentReport);
 router.get('/payment-details/:userId', getPaymentDetails);
 router.post('/add-comedian', validator.body(createComedianSchema), createUserUderAgent);
 router.get('/get-comedian-list', getComedianList);
+router.patch('/change-user-content-vat-status', changeUserContentVatStatus);
 
 router.use(checkUserRole([ADMIN, MASTER_ADMIN]));
 router.get('/user-data/:userId', validator.params(idSchema), getUserDataByID);

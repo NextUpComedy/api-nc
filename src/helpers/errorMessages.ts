@@ -125,3 +125,8 @@ export const NO_AGENT = new CustomError(
   messages.responses.NO_AGENT,
   httpStatus.BAD_REQUEST,
 );
+
+export const VAT_CONTENT_NOT_MATCHED = new CustomError(
+  messages.responses.VAT_CONTENT_NOT_MATCHED,
+  httpStatus.BAD_REQUEST,
+);

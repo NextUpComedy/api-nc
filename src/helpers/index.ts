@@ -41,6 +41,7 @@ export {
   uploadContentSchema,
   editNewsSchema,
   newsIdSchema,
+  changeVatStatusSchema,
 } from './validation';
 
 export { forgetPasswordDTO } from './dto/auth';

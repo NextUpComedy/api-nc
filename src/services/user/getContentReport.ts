@@ -40,6 +40,7 @@ const getNumberOfContent: IGetContentReportDTO = ({ page, limit, userId }) => {
       'primaryCategory',
       'otherRevenue',
       'notes',
+      'vat',
     ],
 
   });

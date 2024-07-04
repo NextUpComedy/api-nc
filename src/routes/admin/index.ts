@@ -29,6 +29,8 @@ import {
   getServices,
   editNews,
   deleteNews,
+  changeVatStatus,
+  getVatStatus,
 } from '../../controllers';
 import {
   constants,
@@ -50,6 +52,7 @@ import {
   addNewsSchema,
   editNewsSchema,
   newsIdSchema,
+  changeVatStatusSchema,
 } from '../../helpers';
 import { checkUserRole } from '../../middleware';
 
@@ -94,5 +97,6 @@ router.get('/plans', getPlans);
 router.put('/plans', validator.body(putPlanSchema), putPlans);
 router.delete('/plans/:planId', validator.params(planIdSchema), deletePlan);
 router.get('/get-services', getServices);
-
+router.patch('/change-vat-status', validator.body(changeVatStatusSchema), changeVatStatus);
+router.get('/get-vat-status/:contentId', getVatStatus);
 export default router;

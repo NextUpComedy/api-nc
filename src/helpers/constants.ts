@@ -78,6 +78,8 @@ export const messages = {
     PENDING_PAYOUT_REQUEST: 'There is already an existing payout request for this agent',
     NO_AGENT_BALANCE: 'No enough balance to ask a payout',
     NO_AGENT: 'Agent not found',
+    VAT_CHANGED_SUCCESS: 'VAT CHANGED SUCCESSFULLY',
+    VAT_CONTENT_NOT_MATCHED: 'CONTENT DOES NOT BELONG TO THIS USER',
 
   },
   stripe: {

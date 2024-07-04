@@ -1,5 +1,5 @@
 import { AES } from 'crypto-js';
-import { User } from 'nc-db-new';
+import { Content, User } from 'nc-db-new';
 import { IChoosePaymentMethod } from '../../interfaces/DtoContents';
 import config from '../../config';
 
@@ -34,9 +34,14 @@ const choosePaymentMethod = async ({ payload }: IChoosePaymentMethod): Promise<v
     user.accountNumber = encryptedAccountNumber;
     user.sortCode = encryptedSortCode;
     user.accountHolderName = encryptedAccountHolderName;
-
-    if (vatPayer === true) {
+    if (vatPayer) {
       user.vatPayer = true;
+      const userContents = await Content.findAndCountAll({ where: { userId } });
+      await Promise.all(
+        userContents.rows.map(async (content) => {
+          await Content.update({ vat: 'true' }, { where: { id: content.id } });
+        }),
+      );
     }
   } else if (preferredPayoutMethod === 'stripe') {
     const { stripeAccountId } = payload;

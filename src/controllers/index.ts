@@ -29,6 +29,7 @@ export {
   getComedianList,
   uploadContent,
   getServices,
+  changeUserContentVatStatus,
 } from './users';
 
 export {
@@ -69,6 +70,8 @@ export {
   addNews,
   editNews,
   deleteNews,
+  changeVatStatus,
+  getVatStatus,
 } from './admin';
 
 export {
